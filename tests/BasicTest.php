@@ -2,7 +2,6 @@
 
 use Orchestra\Testbench\TestCase;
 use Vistik\Checks\CorrectEnvironment;
-use Vistik\Checks\CorrectEnvironmentHealthCheck;
 use Vistik\Checks\DatabaseOnline;
 use Vistik\Checks\DebugModeOff;
 use Vistik\Checks\QueueProcessing;

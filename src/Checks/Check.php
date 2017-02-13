@@ -21,6 +21,12 @@ abstract class Check
 
     public function setError(string $error)
     {
+        $this->log('[ERROR]:' . $error);
         $this->error = $error;
+    }
+
+    public function getLog()
+    {
+        return $this->log;
     }
 }

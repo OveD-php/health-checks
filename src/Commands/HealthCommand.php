@@ -37,7 +37,16 @@ class HealthCommand extends Command
         $checks = config('health.checks');
         $checker = new HealthChecker(new CheckList($checks));
 
+        $output = $checker->prettyPrint();
+
+        foreach ($output as $name => $passed){
+            if ($passed){
+                $this->info($name);
+                continue;
+            }
+            $this->error($name);
+        }
+
         $checker->run();
-        $this->info("Health checks passed!");
     }
 }

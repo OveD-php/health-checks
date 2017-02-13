@@ -35,6 +35,21 @@ class HealthChecker
         }
     }
 
+    public function prettyPrint()
+    {
+        $output = [];
+        /** @var HealthCheck $check */
+        foreach ($this->list as $check) {
+            if (!$check->run()) {
+                $output[get_class($check) . ' failed!'] = false;
+                continue;
+            }
+            $output[get_class($check) . ' ok!'] = true;
+        }
+
+        return $output;
+    }
+
     public function getOutcome(): bool
     {
         $outcome = false;

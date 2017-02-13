@@ -12,7 +12,6 @@ class CanConnectToDatabaseCheck extends Check
     {
         try {
             if (DB::connection()->getPdo()) {
-
                 return true;
             }
         } catch (Exception $e) {

@@ -15,7 +15,6 @@ class EnvironmentCheck extends Check
     {
         $env = config('app.env');
         if ($env === $this->env) {
-
             return true;
         }
         $this->setError(sprintf('env is %s should be %s', $env, $this->env));

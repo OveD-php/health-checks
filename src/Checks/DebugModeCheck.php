@@ -9,7 +9,7 @@ class DebugModeCheck extends Check
 
     public function run(): bool
     {
-        $debugMode = Config::get('app.debug');
+        $debugMode = config('app.debug');
         if (true === $debugMode) {
             $this->setError(sprintf('Debug mode was %s should have been false', $debugMode));
 

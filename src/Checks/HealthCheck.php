@@ -21,7 +21,6 @@ abstract class HealthCheck
 
     public function setError(string $error)
     {
-        $this->log('[ERROR]:' . $error);
         $this->error = $error;
     }
 

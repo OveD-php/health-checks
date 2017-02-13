@@ -10,9 +10,9 @@ class HealthCheckServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        // registrer health route
-
-        // auth check?
+        $this->publishes([
+            __DIR__.'/config/health.php' => config_path('health.php'),
+        ]);
 
         if ($this->app->runningInConsole()) {
             $this->commands([

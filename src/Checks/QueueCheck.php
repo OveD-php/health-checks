@@ -6,7 +6,7 @@ use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Vistik\Jobs\CheckMQIsRunning;
+use Vistik\Jobs\CheckQueueIsRunning;
 
 class QueueCheck extends Check
 {
@@ -25,9 +25,11 @@ class QueueCheck extends Check
     public function run(): bool
     {
         $id = Str::random();
+        $path = './';
+
         try {
-            $cmd = new CheckMQIsRunning($id, $this->queue);
-            $this->log('Check if MQ is up and running and using queue: ' . $cmd->getQueue());
+            $cmd = new CheckQueueIsRunning($id, $path, $this->queue);
+            $this->log('Check if queue is getting processed on queue: ' . $cmd->getQueue());
             $this->dispatch($cmd);
         } catch (Exception $e) {
             $this->log($e->getMessage());
@@ -36,7 +38,7 @@ class QueueCheck extends Check
             return false;
         }
 
-        $file = storage_path('logs') . '/' . $id;
+        $file = $path . $id;
         $max = 10;
         for ($i = 1; $i <= $max; $i++) {
             $this->log(sprintf('Waiting for message from MQ %s/%s', $i, $max));
@@ -44,7 +46,7 @@ class QueueCheck extends Check
                 File::get($file);
                 File::delete($file);
 
-                $this->log("Get a response");
+                $this->log("Got a response");
 
                 return true;
             } catch (Exception $e) {

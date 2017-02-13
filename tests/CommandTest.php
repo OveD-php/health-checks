@@ -1,7 +1,7 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\DebugModeOffHealthCheck;
+use Vistik\Checks\DebugModeOff;
 use Vistik\HealthCheckServiceProvider;
 
 class CommandTest extends TestCase
@@ -15,13 +15,13 @@ class CommandTest extends TestCase
      * @test
      * @group cli
      * @expectedException Vistik\Exceptions\FailedHealthCheckException
-     * @expectedExceptionMessage Failed health check: Vistik\Checks\DebugModeOffCheck
+     * @expectedExceptionMessage Failed health check: Vistik\Checks\DebugModeOff
      */
     public function can_run_health_check_from_command_line()
     {
         // Given
         $this->app['config']->set('app.debug', true);
-        $this->app['config']->set('health.checks', [new DebugModeOffHealthCheck()]);
+        $this->app['config']->set('health.checks', [new DebugModeOff()]);
 
         // When
         $this->artisan('health:check');

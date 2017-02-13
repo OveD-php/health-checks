@@ -2,7 +2,7 @@
 
 namespace Vistik\Checks;
 
-class CorrectEnvironmentHealthCheck extends HealthCheck
+class CorrectEnvironment extends HealthCheck
 {
     private $env;
 

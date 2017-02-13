@@ -1,15 +1,15 @@
 <?php
 
-use Vistik\Checks\DatabaseOnlineHealthCheck;
-use Vistik\Checks\DebugModeOffHealthCheck;
+use Vistik\Checks\DatabaseOnline;
+use Vistik\Checks\DebugModeOff;
 use Vistik\Checks\CorrectEnvironmentHealthCheck;
-use Vistik\Checks\QueueHealthCheck;
+use Vistik\Checks\QueueProcessing;
 
 return [
     'checks' => [
-        new DatabaseOnlineHealthCheck(),
-        new DebugModeOffHealthCheck(),
+        new DatabaseOnline(),
+        new DebugModeOff(),
         new CorrectEnvironmentHealthCheck('production'),
-        new QueueHealthCheck()
+        new QueueProcessing()
     ]
 ];

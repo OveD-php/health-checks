@@ -1,8 +1,9 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\DatabaseOnlineHealthCheck;
-use Vistik\Checks\DebugModeOffHealthCheck;
+use Vistik\Checks\CorrectEnvironment;
+use Vistik\Checks\DatabaseOnline;
+use Vistik\Checks\DebugModeOff;
 use Vistik\Checks\CorrectEnvironmentHealthCheck;
 use Vistik\HealthChecker;
 use Vistik\Utils\CheckList;
@@ -26,7 +27,7 @@ class HealthCheckerTest extends TestCase
         ]);
         $this->app['config']->set('app.env', 'production');
 
-        $checkList = new CheckList([new DatabaseOnlineHealthCheck(), new DebugModeOffHealthCheck(), new CorrectEnvironmentHealthCheck()]);
+        $checkList = new CheckList([new DatabaseOnline(), new DebugModeOff(), new CorrectEnvironment()]);
         $checker = new HealthChecker($checkList);
 
         // When

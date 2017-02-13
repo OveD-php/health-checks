@@ -2,7 +2,7 @@
 
 namespace Vistik\Checks;
 
-class DebugModeOffHealthCheck extends HealthCheck
+class DebugModeOff extends HealthCheck
 {
 
     public function run(): bool

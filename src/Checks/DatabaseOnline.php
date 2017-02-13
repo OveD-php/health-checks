@@ -5,7 +5,7 @@ namespace Vistik\Checks;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class DatabaseOnlineHealthCheck extends HealthCheck
+class DatabaseOnline extends HealthCheck
 {
 
     public function run(): bool

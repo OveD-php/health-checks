@@ -10,4 +10,5 @@ install:
 
 script:
   - phpunit
-  - ./vendor/bin/phpmd src text cleancode, codesize, controversial, design, naming, unusedcode
+  - ./vendor/bin/phpmd src text codesize, controversial, design, naming, unusedcode
+  - ./vendor/bin/phpcs -n --colors --standard=PSR2 src

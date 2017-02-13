@@ -38,10 +38,10 @@ class HealthChecker
     public function getOutcome(): bool
     {
         $outcome = false;
-        try{
+        try {
             $this->run();
             $outcome = true;
-        } catch (Exception $e){
+        } catch (Exception $e) {
             Log::error($e);
         }
 

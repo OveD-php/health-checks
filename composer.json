@@ -13,7 +13,8 @@
     "php": ">=7.0.0",
     "illuminate/support": "~5.4",
     "phpmd/phpmd": "^2.6",
-    "vistik/typed-collections": "^2.0"
+    "vistik/typed-collections": "^2.0",
+    "squizlabs/php_codesniffer": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "~6.0",

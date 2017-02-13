@@ -1,0 +1,1 @@
+./vendor/bin/phpcbf --standard=PSR2 src

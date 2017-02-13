@@ -39,8 +39,8 @@ class HealthCommand extends Command
 
         $output = $checker->prettyPrint();
 
-        foreach ($output as $name => $passed){
-            if ($passed){
+        foreach ($output as $name => $passed) {
+            if ($passed) {
                 $this->info($name);
                 continue;
             }

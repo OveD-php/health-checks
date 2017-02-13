@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Vistik\Jobs\CheckQueueIsRunning;
 
-class QueueCheck extends Check
+class QueueHealthCheck extends HealthCheck
 {
     use DispatchesJobs;
 

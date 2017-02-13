@@ -2,7 +2,7 @@
 
 namespace Vistik\Checks;
 
-abstract class Check
+abstract class HealthCheck
 {
     private $error;
     private $log = [];

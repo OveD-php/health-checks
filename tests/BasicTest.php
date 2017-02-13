@@ -1,10 +1,10 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\DatabaseOnlineCheck;
-use Vistik\Checks\DebugModeOffCheck;
-use Vistik\Checks\CorrectEnvironmentCheck;
-use Vistik\Checks\QueueCheck;
+use Vistik\Checks\DatabaseOnlineHealthCheck;
+use Vistik\Checks\DebugModeOffHealthCheck;
+use Vistik\Checks\CorrectEnvironmentHealthCheck;
+use Vistik\Checks\QueueHealthCheck;
 
 class BasicTest extends TestCase
 {
@@ -22,7 +22,7 @@ class BasicTest extends TestCase
             'database' => ':memory:',
             'prefix'   => '',
         ]);
-        $check = new DatabaseOnlineCheck();
+        $check = new DatabaseOnlineHealthCheck();
 
         // When
         $outcome = $check->run();
@@ -41,7 +41,7 @@ class BasicTest extends TestCase
         // Given
         $this->app['config']->set('database.default', 'default'); // Connection does not exist
 
-        $check = new DatabaseOnlineCheck();
+        $check = new DatabaseOnlineHealthCheck();
 
         // When
         $outcome = $check->run();
@@ -59,7 +59,7 @@ class BasicTest extends TestCase
     {
         // Given
         $this->app['config']->set('app.debug', true);
-        $check = new DebugModeOffCheck();
+        $check = new DebugModeOffHealthCheck();
 
         // When
         $outcome = $check->run();
@@ -77,7 +77,7 @@ class BasicTest extends TestCase
     {
         // Given
         $this->app['config']->set('app.env', 'production');
-        $check = new CorrectEnvironmentCheck();
+        $check = new CorrectEnvironmentHealthCheck();
 
         // When
         $outcome = $check->run();
@@ -95,7 +95,7 @@ class BasicTest extends TestCase
     {
         // Given
         $this->app['config']->set('app.env', 'testing');
-        $check = new CorrectEnvironmentCheck();
+        $check = new CorrectEnvironmentHealthCheck();
 
         // When
         $outcome = $check->run();
@@ -111,7 +111,7 @@ class BasicTest extends TestCase
      */
     public function can_check_queue_system()
     {
-        $check = new QueueCheck();
+        $check = new QueueHealthCheck();
 
         // When
         $outcome = $check->run();
@@ -129,7 +129,7 @@ class BasicTest extends TestCase
     {
         // Will trigger an SQL error since database tables does not exist
         $this->app['config']->set('queue.default', 'database');
-        $check = new QueueCheck();
+        $check = new QueueHealthCheck();
 
         // When
         $outcome = $check->run();

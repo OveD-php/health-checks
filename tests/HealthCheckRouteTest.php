@@ -2,8 +2,8 @@
 
 
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\DebugModeOffCheck;
-use Vistik\Checks\QueueCheck;
+use Vistik\Checks\DebugModeOffHealthCheck;
+use Vistik\Checks\QueueHealthCheck;
 use Vistik\HealthCheckServiceProvider;
 
 class HealthCheckRouteTest extends TestCase
@@ -23,7 +23,7 @@ class HealthCheckRouteTest extends TestCase
     {
         // Given
         $this->app['config']->set('app.debug', false);
-        $this->app['config']->set('health.checks', [new DebugModeOffCheck()]);
+        $this->app['config']->set('health.checks', [new DebugModeOffHealthCheck()]);
 
         // When
         $this->get('_health')->assertJson(['health' => 'ok']);
@@ -40,7 +40,7 @@ class HealthCheckRouteTest extends TestCase
     {
         // Given
         $this->app['config']->set('queue.default', 'database');
-        $this->app['config']->set('health.checks', [new QueueCheck()]);
+        $this->app['config']->set('health.checks', [new QueueHealthCheck()]);
 
         // When
         $this->get('_health')->assertJson(['health' => 'failed']);

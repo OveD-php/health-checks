@@ -1,7 +1,7 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\DebugModeOffCheck;
+use Vistik\Checks\DebugModeOffHealthCheck;
 use Vistik\HealthCheckServiceProvider;
 
 class CommandTest extends TestCase
@@ -21,7 +21,7 @@ class CommandTest extends TestCase
     {
         // Given
         $this->app['config']->set('app.debug', true);
-        $this->app['config']->set('health.checks', [new DebugModeOffCheck()]);
+        $this->app['config']->set('health.checks', [new DebugModeOffHealthCheck()]);
 
         // When
         $this->artisan('health:check');

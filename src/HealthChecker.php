@@ -4,7 +4,7 @@ namespace Vistik;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Vistik\Checks\Check;
+use Vistik\Checks\HealthCheck;
 use Vistik\Exceptions\FailedHealthCheckException;
 use Vistik\Exceptions\NoHealthChecksSetupException;
 use Vistik\Utils\CheckList;
@@ -27,7 +27,7 @@ class HealthChecker
             throw new NoHealthChecksSetupException("No health check is setup!");
         }
 
-        /** @var Check $check */
+        /** @var HealthCheck $check */
         foreach ($this->list as $check) {
             if (!$check->run()) {
                 throw new FailedHealthCheckException($check, "Failed health check: " . get_class($check));

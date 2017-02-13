@@ -2,10 +2,10 @@
 
 namespace Vistik\Utils;
 
-use Vistik\Checks\Check;
+use Vistik\Checks\HealthCheck;
 use Vistik\Collections\TypedCollection;
 
 class CheckList extends TypedCollection
 {
-    protected $type = Check::class;
+    protected $type = HealthCheck::class;
 }

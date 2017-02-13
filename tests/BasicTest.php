@@ -1,9 +1,9 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\CanConnectToDatabaseCheck;
-use Vistik\Checks\DebugModeCheck;
-use Vistik\Checks\EnvironmentCheck;
+use Vistik\Checks\DatabaseOnlineCheck;
+use Vistik\Checks\DebugModeOffCheck;
+use Vistik\Checks\CorrectEnvironmentCheck;
 use Vistik\Checks\QueueCheck;
 
 class BasicTest extends TestCase
@@ -22,7 +22,7 @@ class BasicTest extends TestCase
             'database' => ':memory:',
             'prefix'   => '',
         ]);
-        $check = new CanConnectToDatabaseCheck();
+        $check = new DatabaseOnlineCheck();
 
         // When
         $outcome = $check->run();
@@ -41,7 +41,7 @@ class BasicTest extends TestCase
         // Given
         $this->app['config']->set('database.default', 'default'); // Connection does not exist
 
-        $check = new CanConnectToDatabaseCheck();
+        $check = new DatabaseOnlineCheck();
 
         // When
         $outcome = $check->run();
@@ -59,7 +59,7 @@ class BasicTest extends TestCase
     {
         // Given
         $this->app['config']->set('app.debug', true);
-        $check = new DebugModeCheck();
+        $check = new DebugModeOffCheck();
 
         // When
         $outcome = $check->run();
@@ -77,7 +77,7 @@ class BasicTest extends TestCase
     {
         // Given
         $this->app['config']->set('app.env', 'production');
-        $check = new EnvironmentCheck();
+        $check = new CorrectEnvironmentCheck();
 
         // When
         $outcome = $check->run();
@@ -95,7 +95,7 @@ class BasicTest extends TestCase
     {
         // Given
         $this->app['config']->set('app.env', 'testing');
-        $check = new EnvironmentCheck();
+        $check = new CorrectEnvironmentCheck();
 
         // When
         $outcome = $check->run();

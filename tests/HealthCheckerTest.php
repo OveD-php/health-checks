@@ -1,9 +1,9 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\CanConnectToDatabaseCheck;
-use Vistik\Checks\DebugModeCheck;
-use Vistik\Checks\EnvironmentCheck;
+use Vistik\Checks\DatabaseOnlineCheck;
+use Vistik\Checks\DebugModeOffCheck;
+use Vistik\Checks\CorrectEnvironmentCheck;
 use Vistik\HealthChecker;
 use Vistik\Utils\CheckList;
 
@@ -26,13 +26,32 @@ class HealthCheckerTest extends TestCase
         ]);
         $this->app['config']->set('app.env', 'production');
 
-        $checkList = new CheckList([new CanConnectToDatabaseCheck(), new DebugModeCheck(), new EnvironmentCheck()]);
+        $checkList = new CheckList([new DatabaseOnlineCheck(), new DebugModeOffCheck(), new CorrectEnvironmentCheck()]);
         $checker = new HealthChecker($checkList);
 
         // When
-        $outcome = $checker->run();
+        $outcome = $checker->getOutcome();
 
         // Then
         $this->assertTrue($outcome);
+    }
+
+    /**
+     * @test
+     * @group checks
+     * @expectedException Vistik\Exceptions\NoHealthChecksSetupException
+     * @expectedExceptionMessage No health check is setup!
+     */
+    public function throws_execption_if_no_health_checks_is_setup()
+    {
+        // Given
+        $checkList = new CheckList();
+        $checker = new HealthChecker($checkList);
+
+        // When
+        $checker->run();
+
+        // Then
+
     }
 }

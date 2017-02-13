@@ -5,7 +5,7 @@ namespace Vistik\Checks;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class CanConnectToDatabaseCheck extends Check
+class DatabaseOnlineCheck extends Check
 {
 
     public function run(): bool
@@ -19,10 +19,5 @@ class CanConnectToDatabaseCheck extends Check
         }
 
         return false;
-    }
-
-    public function getError(): string
-    {
-        return $this->error;
     }
 }

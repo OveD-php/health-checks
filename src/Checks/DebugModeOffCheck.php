@@ -2,9 +2,7 @@
 
 namespace Vistik\Checks;
 
-use Illuminate\Support\Facades\Config;
-
-class DebugModeCheck extends Check
+class DebugModeOffCheck extends Check
 {
 
     public function run(): bool

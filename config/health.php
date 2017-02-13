@@ -1,15 +1,15 @@
 <?php
 
-use Vistik\Checks\CanConnectToDatabaseCheck;
-use Vistik\Checks\DebugModeCheck;
-use Vistik\Checks\EnvironmentCheck;
+use Vistik\Checks\DatabaseOnlineCheck;
+use Vistik\Checks\DebugModeOffCheck;
+use Vistik\Checks\CorrectEnvironmentCheck;
 use Vistik\Checks\QueueCheck;
 
 return [
     'checks' => [
-        new CanConnectToDatabaseCheck(),
-        new DebugModeCheck(),
-        new EnvironmentCheck('production'),
+        new DatabaseOnlineCheck(),
+        new DebugModeOffCheck(),
+        new CorrectEnvironmentCheck('production'),
         new QueueCheck()
     ]
 ];

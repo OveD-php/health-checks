@@ -2,7 +2,7 @@
 
 namespace Vistik\Checks;
 
-class EnvironmentCheck extends Check
+class CorrectEnvironmentCheck extends Check
 {
     private $env;
 

@@ -24,6 +24,7 @@ class HealthCheckRouteTest extends TestCase
         // Given
         $this->app['config']->set('app.debug', false);
         $this->app['config']->set('health.checks', [new DebugModeOff()]);
+        $this->app['config']->set('health.route.enabled', true);
 
         // When
         $this->get('_health')->assertJson(['health' => 'ok']);
@@ -41,10 +42,30 @@ class HealthCheckRouteTest extends TestCase
         // Given
         $this->app['config']->set('queue.default', 'database');
         $this->app['config']->set('health.checks', [new QueueProcessing()]);
+        $this->app['config']->set('health.route.enabled', true);
 
         // When
-        $this->get('_health')->assertJson(['health' => 'failed']);
+        $this->get('_health')->assertJson(['health' => 'failed'])->assertStatus(500);
 
         // Then
+    }
+
+    /**
+     * @test
+     * @group url
+     *
+     */
+    public function health_url_returns_404_if_disabled()
+    {
+        // Given
+        $this->app['config']->set('health.route.enabled', false);
+
+        // When
+        $response = $this->get('_health');
+
+        // Then
+        $response->assertSee("Route not found");
+        $response->assertStatus(404);
+
     }
 }

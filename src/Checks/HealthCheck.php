@@ -4,7 +4,7 @@ namespace Vistik\Checks;
 
 abstract class HealthCheck
 {
-    private $error;
+    private $error = '';
     private $log = [];
 
     abstract public function run(): bool;

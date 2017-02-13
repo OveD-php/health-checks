@@ -4,10 +4,6 @@ namespace Vistik\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Timekit\Account;
-use Timekit\Filter;
-use Timekit\Jobs\DeleteUser as DeleteUserJob;
-use Timekit\User;
 use Vistik\HealthChecker;
 use Vistik\Utils\CheckList;
 
@@ -39,13 +35,11 @@ class HealthCommand extends Command
 
         $output = $checker->prettyPrint();
 
-        foreach ($output as $name => $passed) {
-            if ($passed) {
-                $this->info($name);
-                continue;
-            }
-            $this->error($name);
+        $rows = [];
+        foreach ($output as $o) {
+            $rows[] = [$o['check'], $o['passed'], $o['log'], $o['error']];
         }
+        $this->table(['check', 'status', 'log', 'error'], $rows);
 
         $checker->run();
     }

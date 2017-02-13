@@ -1,10 +1,9 @@
 <?php
 
-
 use Orchestra\Testbench\TestCase;
 use Vistik\Checks\DebugModeOff;
 use Vistik\Checks\QueueProcessing;
-use Vistik\HealthCheckServiceProvider;
+use Vistik\ServiceProvider\HealthCheckServiceProvider;
 
 class HealthCheckRouteTest extends TestCase
 {

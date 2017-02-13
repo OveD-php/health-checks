@@ -2,7 +2,7 @@
 
 use Orchestra\Testbench\TestCase;
 use Vistik\Checks\DebugModeOff;
-use Vistik\HealthCheckServiceProvider;
+use Vistik\ServiceProvider\HealthCheckServiceProvider;
 
 class CommandTest extends TestCase
 {

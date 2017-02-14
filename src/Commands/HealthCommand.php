@@ -43,12 +43,12 @@ class HealthCommand extends Command
         $this->table(['check', 'status', 'log', 'error'], $rows);
 
         // Filter out passed check
-        $failingChecks = collect($output)->reject(function($item){
+        $failingChecks = collect($output)->reject(function ($item) {
             return $item['passed'] === true;
         });
 
         // If there is any failing checks throw exception
-        if (count($failingChecks) > 0){
+        if (count($failingChecks) > 0) {
             $failingChecks = $failingChecks->implode('check', ', ');
 
             throw new FailedHealthCheckException("Failed health checks: " . $failingChecks);

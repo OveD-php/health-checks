@@ -22,15 +22,27 @@ By default the following checks are setup:
 
 run `php artisan health:check` from your commandline
 
+or
+
+goto `[GET] http://<APP_URL>/_health` to run your checks you could setup something like pingdom.com to check the health of your application
+You can disable this route by setting `route.enabled = false` in `config/health.php`
+
+You could also to laravels build in command scheduling and add:
+```php
+    $schedule->command('health:check')->hourly();
+```
+
+in `App\Console\Kernel@schedule`
+
 #### Create your own checks
 
 Create a new class `IsFriday` and extend `Vistik\Checks\HealthCheck`
-In `function run(): bool` Do your check and return `true` or `false`
+In `public function run(): bool` Do your check and return `true` or `false`
 In this case 
 ```php
-functon run(): bool{
+public function run(): bool{
     return Carbon::now()->isFriday();
 }
 ```
 
-Then goto config/health.php and add IsFriday() to the list of checks
+Then goto `config/health.php` and add IsFriday() to the list of checks

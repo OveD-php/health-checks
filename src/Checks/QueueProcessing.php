@@ -29,7 +29,7 @@ class QueueProcessing extends HealthCheck
 
         try {
             $cmd = new CheckQueueIsRunning($id, $path, $this->queue);
-            $this->log('Check if queue is getting processed on queue: ' . $cmd->getQueue());
+            $this->log('Check if queue is getting processed - queue: ' . $cmd->getQueue());
             $this->dispatch($cmd);
         } catch (Exception $e) {
             $this->log($e->getMessage());

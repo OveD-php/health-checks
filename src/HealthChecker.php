@@ -30,7 +30,7 @@ class HealthChecker
         /** @var HealthCheck $check */
         foreach ($this->list as $check) {
             if (!$check->run()) {
-                throw new FailedHealthCheckException($check, "Failed health check: " . get_class($check));
+                throw new FailedHealthCheckException("Failed health check: " . get_class($check));
             }
         }
     }
@@ -47,7 +47,7 @@ class HealthChecker
 
             $output[] = [
                 'passed' => $passed,
-                'check'  => get_class($check),
+                'check'  => class_basename($check),
                 'log'    => implode("\n", $check->getLog()),
                 'error'  => $check->getError()
             ];

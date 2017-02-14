@@ -17,7 +17,7 @@ class CommandTest extends TestCase
      * @test
      * @group cli
      * @expectedException Vistik\Exceptions\FailedHealthCheckException
-     * @expectedExceptionMessage Failed health check: Vistik\Checks\DebugModeOff
+     * @expectedExceptionMessage Failed health checks: DebugModeOff
      */
     public function running_health_check_from_command_line_will_throw_exception()
     {

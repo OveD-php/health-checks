@@ -4,6 +4,7 @@ namespace Vistik\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Vistik\Exceptions\FailedHealthCheckException;
 use Vistik\HealthChecker;
 use Vistik\Utils\CheckList;
 
@@ -41,6 +42,16 @@ class HealthCommand extends Command
         }
         $this->table(['check', 'status', 'log', 'error'], $rows);
 
-        $checker->run();
+        // Filter out passed check
+        $failingChecks = collect($output)->reject(function($item){
+            return $item['passed'] === true;
+        });
+
+        // If there is any failing checks throw exception
+        if (count($failingChecks) > 0){
+            $failingChecks = $failingChecks->implode('check', ', ');
+
+            throw new FailedHealthCheckException("Failed health checks: " . $failingChecks);
+        }
     }
 }

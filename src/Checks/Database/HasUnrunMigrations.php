@@ -23,7 +23,7 @@ class HasUnrunMigrations extends HealthCheck
         $output = collect(explode("\n", $output));
 
         $this->log("Not yet migrated:");
-        $output->each(function($item){
+        $output->each(function ($item) {
             $item = str_replace(['| N    | ', ' |'], '', $item);
             $this->log($item);
         });

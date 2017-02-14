@@ -9,19 +9,9 @@ use Vistik\Checks\HealthCheck;
 class HasUnrunMigrations extends HealthCheck
 {
 
-    /**
-     * @var string
-     */
-    private $path;
-
-    public function __construct(string $path)
-    {
-        $this->path = $path;
-    }
-
     public function run(): bool
     {
-        Artisan::call('migrate:status', ['--path' => $this->path]);
+        Artisan::call('migrate:status');
         $output = Artisan::output();
 
         if (Str::contains(trim($output), 'No migrations found')) {
@@ -32,10 +22,12 @@ class HasUnrunMigrations extends HealthCheck
 
         $output = collect(explode("\n", $output));
 
-        $output = $output->reject(function ($item) {
-            return !Str::contains($item, "| N    |");
+        $this->log("Not yet migrated:");
+        $output->each(function($item){
+            $item = str_replace(['| N    | ', ' |'], '', $item);
+            $this->log($item);
         });
 
-        return $output->count() > 0;
+        return $output->count() == 0;
     }
 }

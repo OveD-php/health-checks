@@ -175,6 +175,28 @@ class BasicTest extends TestCase
         $this->assertTrue($outcome);
     }
 
+    /**
+     * @test
+     * @group checks
+     *
+     */
+    public function can_check_if_app_has_unrun_migrations()
+    {
+        // Given
+        $this->app['config']->set('database.default', 'testbench');
+        $this->app['config']->set('database.connections.testbench', [
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+            'prefix'   => '',
+        ]);
 
+        $check = new HasUnrunMigrations();
+
+        // When
+        $outcome = $check->run();
+
+        // Then
+        $this->assertFalse($outcome);
+        $this->assertEquals('No migration was found - failing check', $check->getLog()[0]);
     }
 }

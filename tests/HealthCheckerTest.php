@@ -1,9 +1,9 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\CorrectEnvironment;
-use Vistik\Checks\DatabaseOnline;
-use Vistik\Checks\DebugModeOff;
+use Vistik\Checks\Environment\CorrectEnvironment;
+use Vistik\Checks\Database\DatabaseOnline;
+use Vistik\Checks\Environment\DebugModeOff;
 use Vistik\HealthChecker;
 use Vistik\Utils\CheckList;
 

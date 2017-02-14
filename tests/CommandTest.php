@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\App;
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\DebugModeOff;
-use Vistik\Commands\HealthCommand;
+use Vistik\Checks\Environment\DebugModeOff;
 use Vistik\ServiceProvider\HealthCheckServiceProvider;
 
 class CommandTest extends TestCase

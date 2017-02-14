@@ -1,10 +1,10 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\CorrectEnvironment;
-use Vistik\Checks\DatabaseOnline;
-use Vistik\Checks\DebugModeOff;
-use Vistik\Checks\QueueProcessing;
+use Vistik\Checks\Environment\CorrectEnvironment;
+use Vistik\Checks\Database\DatabaseOnline;
+use Vistik\Checks\Environment\DebugModeOff;
+use Vistik\Checks\Queue\QueueIsProcessing;
 
 class BasicTest extends TestCase
 {
@@ -111,7 +111,7 @@ class BasicTest extends TestCase
      */
     public function can_check_queue_system()
     {
-        $check = new QueueProcessing();
+        $check = new QueueIsProcessing();
 
         // When
         $outcome = $check->run();
@@ -129,7 +129,7 @@ class BasicTest extends TestCase
     {
         // Will trigger an SQL error since database tables does not exist
         $this->app['config']->set('queue.default', 'database');
-        $check = new QueueProcessing();
+        $check = new QueueIsProcessing();
 
         // When
         $outcome = $check->run();

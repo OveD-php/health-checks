@@ -1,8 +1,8 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\DebugModeOff;
-use Vistik\Checks\QueueProcessing;
+use Vistik\Checks\Environment\DebugModeOff;
+use Vistik\Checks\Queue\QueueIsProcessing;
 use Vistik\ServiceProvider\HealthCheckServiceProvider;
 
 class HealthCheckRouteTest extends TestCase
@@ -40,7 +40,7 @@ class HealthCheckRouteTest extends TestCase
     {
         // Given
         $this->app['config']->set('queue.default', 'database');
-        $this->app['config']->set('health.checks', [new QueueProcessing()]);
+        $this->app['config']->set('health.checks', [new QueueIsProcessing()]);
         $this->app['config']->set('health.route.enabled', true);
 
         // When

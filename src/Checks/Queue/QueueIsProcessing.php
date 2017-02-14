@@ -1,14 +1,15 @@
 <?php
 
-namespace Vistik\Checks;
+namespace Vistik\Checks\Queue;
 
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Vistik\Checks\HealthCheck;
 use Vistik\Jobs\CheckQueueIsRunning;
 
-class QueueProcessing extends HealthCheck
+class QueueIsProcessing extends HealthCheck
 {
     use DispatchesJobs;
 

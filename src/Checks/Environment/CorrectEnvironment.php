@@ -1,6 +1,8 @@
 <?php
 
-namespace Vistik\Checks;
+namespace Vistik\Checks\Environment;
+
+use Vistik\Checks\HealthCheck;
 
 class CorrectEnvironment extends HealthCheck
 {

@@ -14,9 +14,7 @@ Route::get(
         $checks = config('health.checks');
         $checker = new HealthChecker(new CheckList($checks));
 
-        $outcome = $checker->getOutcome();
-
-        if (!$outcome) {
+        if (!$checker->getOutcome()) {
             return response()->json(['health' => 'failed'], 500);
         }
 

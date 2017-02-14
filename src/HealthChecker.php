@@ -40,13 +40,8 @@ class HealthChecker
         $output = [];
         /** @var HealthCheck $check */
         foreach ($this->list as $check) {
-            $passed = false;
-            if ($check->run()) {
-                $passed = true;
-            }
-
             $output[] = [
-                'passed' => $passed,
+                'passed' => $check->run(),
                 'check'  => class_basename($check),
                 'log'    => implode("\n", $check->getLog()),
                 'error'  => $check->getError()

@@ -19,6 +19,8 @@ By default the following checks are setup:
 - `DatabaseOnline` will check if we can get a connection to the Database
 - `DebugModeOff` will check if debug mode is off
 - `QueueProcessing` will check if the queue is running and jobs are getting processed
+- `PathIsWritable` will check if provide path is writable
+- `HasUnrunMigrations` will check if application has any migrations not yet migrated
 
 run `php artisan health:check` from your commandline
 

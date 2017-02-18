@@ -11,7 +11,7 @@
   ],
   "require": {
     "php": ">=7.0.0",
-    "illuminate/support": "~5.4",
+    "illuminate/support": "~5.4|~5.3",
     "phpmd/phpmd": "^2.6",
     "vistik/typed-collections": "^2.0",
     "squizlabs/php_codesniffer": "*"

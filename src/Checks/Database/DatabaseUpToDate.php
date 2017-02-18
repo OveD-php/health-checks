@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use Vistik\Checks\HealthCheck;
 
-class HasUnrunMigrations extends HealthCheck
+class DatabaseUpToDate extends HealthCheck
 {
 
     public function run(): bool

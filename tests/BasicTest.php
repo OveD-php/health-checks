@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase;
 use Vistik\Checks\Database\DatabaseOnline;
-use Vistik\Checks\Database\HasUnrunMigrations;
+use Vistik\Checks\Database\DatabaseUpToDate;
 use Vistik\Checks\Environment\CorrectEnvironment;
 use Vistik\Checks\Environment\DebugModeOff;
 use Vistik\Checks\Filesystem\PathIsWritable;
@@ -190,7 +190,7 @@ class BasicTest extends TestCase
             'prefix'   => '',
         ]);
 
-        $check = new HasUnrunMigrations();
+        $check = new DatabaseUpToDate();
 
         // When
         $outcome = $check->run();

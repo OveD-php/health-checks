@@ -38,7 +38,7 @@ class HealthCommand extends Command
 
         $rows = [];
         foreach ($output as $o) {
-            $rows[] = [$o['check'], $o['passed'] ? '<info>passed</info>' : '<error>failed</error>', $o['log'], "<error>" . $o['error']. "</error>"];
+            $rows[] = [$o['check'], $o['passed'] ? '<info>passed</info>' : '<error>failed</error>', $o['log'], $o['error']];
         }
         $this->table(['check', 'status', 'log', 'error'], $rows);
 

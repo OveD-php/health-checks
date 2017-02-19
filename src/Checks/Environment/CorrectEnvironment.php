@@ -16,10 +16,11 @@ class CorrectEnvironment extends HealthCheck
     public function run(): bool
     {
         $env = config('app.env');
+        $this->log("Checking that environment is set to " . $this->env);
         if ($env === $this->env) {
             return true;
         }
-        $this->setError(sprintf('env is %s should be %s', $env, $this->env));
+        $this->setError(sprintf('Environment is %s should be %s', $env, $this->env));
 
         return false;
     }

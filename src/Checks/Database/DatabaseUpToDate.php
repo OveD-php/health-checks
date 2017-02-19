@@ -26,12 +26,19 @@ class DatabaseUpToDate extends HealthCheck
             return !Str::contains($item, '| N    | ');
         });
 
-        $this->log("Not yet migrated:");
+        $this->log("Checking if any migrations are not yet applied!");
+        $unAppliedMigrations = [];
         $output->each(function ($item) {
             $item = str_replace(['| N    | ', ' |'], '', $item);
-            $this->log($item);
+            $unAppliedMigrations[] = $item;
         });
 
-        return $output->count() == 0;
+        $check = $output->count() == 0;
+
+        if (!$check){
+            $this->setError(implode("\n", $unAppliedMigrations));
+        }
+
+        return $check;
     }
 }

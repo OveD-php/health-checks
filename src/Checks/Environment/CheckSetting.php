@@ -25,16 +25,16 @@ class CheckSetting extends HealthCheck
 
     public function run(): bool
     {
-        $this->log(sprintf('Checking if setting %s has correct value: %s', $this->setting, $this->value));
+        $this->log(sprintf('Checking if setting <comment>%s</comment> has correct value: <comment>%s</comment>', $this->setting, $this->value));
         $value = config($this->setting, null);
         if ($value === null) {
-            $this->setError(sprintf('Setting %s is not set!', $this->setting));
+            $this->setError(sprintf('Setting <comment>%s</comment> is not set!', $this->setting));
 
             return false;
         }
 
         if ($value != $this->value) {
-            $this->setError(sprintf("Expected value %s does not match actual value: %s", $this->value, $value));
+            $this->setError(sprintf("Expected value <comment>%s</comment> does not match actual value: <comment>%s</comment>", $this->value, $value));
 
             return false;
         }

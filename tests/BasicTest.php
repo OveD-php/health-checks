@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase;
 use Vistik\Checks\Database\DatabaseOnline;
 use Vistik\Checks\Database\DatabaseUpToDate;
+use Vistik\Checks\Environment\CheckSetting;
 use Vistik\Checks\Environment\CorrectEnvironment;
 use Vistik\Checks\Environment\DebugModeOff;
 use Vistik\Checks\Filesystem\PathIsWritable;
@@ -199,4 +199,44 @@ class BasicTest extends TestCase
         $this->assertFalse($outcome);
         $this->assertEquals('No migration was found - failing check', $check->getLog()[0]);
     }
+
+    /**
+     * @test
+     * @group checks
+     *
+     */
+    public function can_check_if_config_is_correct()
+    {
+        // Given
+        $this->app['config']->set('database.default', 'testbench');
+
+        $check = new CheckSetting('database.default', 'testbench');
+
+        // When
+        $outcome = $check->run();
+
+        // Then
+        $this->assertTrue($outcome);
+    }
+
+    /**
+     * @test
+     * @group checks
+     *
+     */
+    public function will_fail_if_setting_does_not_match()
+    {
+        // Given
+        $this->app['config']->set('database.default', 'testbench');
+
+        $check = new CheckSetting('database.default', 'not-correct');
+
+        // When
+        $outcome = $check->run();
+
+        // Then
+        $this->assertFalse($outcome);
+        $this->assertEquals("Expected value not-correct does not match actual value: testbench", $check->getError());
+    }
+
 }

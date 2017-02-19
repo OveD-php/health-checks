@@ -42,12 +42,9 @@ class QueueIsProcessing extends HealthCheck
         $file = $path . $id;
         $max = 10;
         for ($i = 1; $i <= $max; $i++) {
-            $this->log(sprintf('Waiting for message from MQ %s/%s', $i, $max));
             try {
                 File::get($file);
                 File::delete($file);
-
-                $this->log("Got a response");
 
                 return true;
             } catch (Exception $e) {

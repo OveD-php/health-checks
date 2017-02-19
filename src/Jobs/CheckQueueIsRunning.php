@@ -44,4 +44,9 @@ class CheckQueueIsRunning extends Job implements ShouldQueue
     {
         return $this->id;
     }
+
+    public function getRawBody()
+    {
+        
+    }
 }

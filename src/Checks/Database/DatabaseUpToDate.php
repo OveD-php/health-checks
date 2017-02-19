@@ -22,6 +22,10 @@ class DatabaseUpToDate extends HealthCheck
 
         $output = collect(explode("\n", $output));
 
+        $output = $output->reject(function($item){
+            return !Str::contains($item, '| N    | ');
+        });
+
         $this->log("Not yet migrated:");
         $output->each(function ($item) {
             $item = str_replace(['| N    | ', ' |'], '', $item);

@@ -2,7 +2,7 @@
 
 namespace Vistik\Checks\Environment;
 
-class DebugModeOff extends CheckSetting
+class DebugModeOff extends CheckConfigSetting
 {
 
     public function __construct()

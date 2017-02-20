@@ -3,7 +3,7 @@
 namespace Vistik\Checks\Environment;
 
 
-class CorrectEnvironment extends CheckSetting
+class CorrectEnvironment extends CheckConfigSetting
 {
 
     public function __construct($env = 'production')

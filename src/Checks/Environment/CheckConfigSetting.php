@@ -5,7 +5,7 @@ namespace Vistik\Checks\Environment;
 
 use Vistik\Checks\HealthCheck;
 
-class CheckSetting extends HealthCheck
+class CheckConfigSetting extends HealthCheck
 {
 
     /**
@@ -17,7 +17,7 @@ class CheckSetting extends HealthCheck
      */
     protected $value;
 
-    public function __construct($setting, $value)
+    public function __construct(string $setting, $value)
     {
         $this->setting = $setting;
         $this->value = $value;
@@ -25,10 +25,10 @@ class CheckSetting extends HealthCheck
 
     public function run(): bool
     {
-        $this->log(sprintf('Checking if setting <comment>%s</comment> has correct value: <comment>%s</comment>', $this->setting, $this->value));
+        $this->log(sprintf('Checking if config setting <comment>%s</comment> has correct value: <comment>%s</comment>', $this->setting, $this->value));
         $value = config($this->setting, null);
         if ($value === null) {
-            $this->setError(sprintf('Setting <comment>%s</comment> is not set!', $this->setting));
+            $this->setError(sprintf('Config setting <comment>%s</comment> is not set!', $this->setting));
 
             return false;
         }

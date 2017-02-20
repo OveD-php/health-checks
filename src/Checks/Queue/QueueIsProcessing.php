@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Vistik\Checks\HealthCheck;
 use Vistik\Jobs\CheckQueueIsRunning;
+use Vistik\Utils\Printer;
 
 class QueueIsProcessing extends HealthCheck
 {
@@ -30,7 +31,7 @@ class QueueIsProcessing extends HealthCheck
 
         try {
             $cmd = new CheckQueueIsRunning($id, $path, $this->queue);
-            $this->log('Check if queue is getting processed - queue: ' . $cmd->getQueue());
+            $this->log('Check if queue is getting processed - queue: ' . Printer::toString($cmd->getQueue()));
             $this->dispatch($cmd);
         } catch (Exception $e) {
             $this->log($e->getMessage());

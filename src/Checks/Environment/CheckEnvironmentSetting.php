@@ -4,6 +4,7 @@ namespace Vistik\Checks\Environment;
 
 
 use Vistik\Checks\HealthCheck;
+use Vistik\Utils\Printer;
 
 class CheckEnvironmentSetting extends HealthCheck
 {
@@ -25,7 +26,7 @@ class CheckEnvironmentSetting extends HealthCheck
 
     public function run(): bool
     {
-        $this->log(sprintf('Checking if environment setting <comment>%s</comment> has correct value: <comment>%s</comment>', $this->setting, $this->value));
+        $this->log(sprintf('Checking if environment setting <comment>%s</comment> has correct value: <comment>%s</comment>', $this->setting, Printer::toString($this->value)));
         $value = env($this->setting, null);
         if ($value === null) {
             $this->setError(sprintf('Environment setting <comment>%s</comment> is not set!', $this->setting));
@@ -34,7 +35,7 @@ class CheckEnvironmentSetting extends HealthCheck
         }
 
         if ($value != $this->value) {
-            $this->setError(sprintf("Expected value <comment>%s</comment> does not match actual value: <comment>%s</comment>", $this->value, $value));
+            $this->setError(sprintf("Expected value <comment>%s</comment> does not match actual value: <comment>%s</comment>", $this->value, Printer::toString($value)));
 
             return false;
         }

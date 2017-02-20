@@ -248,7 +248,27 @@ class BasicTest extends TestCase
     public function will_fail_if_env_setting_does_not_match()
     {
         // Given
-        //$this->app['config']->set('database.default', 'testbench');
+        putenv("visti=testbench");
+
+        $check = new CheckEnvironmentSetting('visti', 'not-correct');
+
+        // When
+        $outcome = $check->run();
+
+        // Then
+        $this->assertFalse($outcome);
+        $this->assertEquals("Expected value <comment>not-correct</comment> does not match actual value: <comment>testbench</comment>", $check->getError());
+
+    }
+
+    /**
+     * @test
+     * @group checks
+     *
+     */
+    public function can_check_if_env_setting_does_match()
+    {
+        // Given
         putenv("visti=hey");
 
         $check = new CheckEnvironmentSetting('visti', 'hey');

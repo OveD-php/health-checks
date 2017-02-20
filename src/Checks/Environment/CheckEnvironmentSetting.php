@@ -35,7 +35,7 @@ class CheckEnvironmentSetting extends HealthCheck
         }
 
         if ($value != $this->value) {
-            $this->setError(sprintf("Expected value <comment>%s</comment> does not match actual value: <comment>%s</comment>", $this->value, Printer::toString($value)));
+            $this->setError(sprintf("Expected value <comment>%s</comment> does not match actual value: <comment>%s</comment>", Printer::toString($this->value), Printer::toString($value)));
 
             return false;
         }

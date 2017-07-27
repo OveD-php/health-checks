@@ -1,6 +1,7 @@
 <?php
 
-use Vistik\Checks\Application\Response500Check;
+use Vistik\Checks\Application\LogLevel;
+use Vistik\Checks\Application\MaxRatioOf500Responses;
 use Vistik\Checks\Database\DatabaseOnline;
 use Vistik\Checks\Database\DatabaseUpToDate;
 use Vistik\Checks\Environment\CorrectEnvironment;
@@ -13,13 +14,14 @@ return [
         new DatabaseOnline(),
         new DatabaseUpToDate(),
         new DebugModeOff(),
+        new LogLevel('error'),
         new CorrectEnvironment('production'),
         new QueueIsProcessing(),
         new PathIsWritable(storage_path()),
         new PathIsWritable(storage_path('logs')),
         new PathIsWritable(storage_path('framework/sessions')),
         new PathIsWritable(storage_path('framework/cache')),
-        new Response500Check(1.00),
+        new MaxRatioOf500Responses(1.00),
     ],
     'route'  => [
         'enabled' => true,

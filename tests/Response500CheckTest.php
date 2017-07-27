@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Response;
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\Application\Response500Check;
+use Vistik\Checks\Application\MaxRatioOf500Responses;
 use Vistik\Metrics\Metrics;
 
 class Response500CheckTest extends TestCase
@@ -16,7 +16,7 @@ class Response500CheckTest extends TestCase
     public function health_check()
     {
         // Given
-        $check = new Response500Check(1.00);
+        $check = new MaxRatioOf500Responses(1.00);
         $this->assertTrue($check->run());
 
         // When

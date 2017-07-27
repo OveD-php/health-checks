@@ -6,7 +6,7 @@ use Vistik\Checks\HealthCheck;
 use Vistik\Metrics\Metrics;
 use Vistik\Utils\Printer;
 
-class Response500Check extends HealthCheck
+class MaxRatioOf500Responses extends HealthCheck
 {
 
     /**

@@ -4,6 +4,7 @@ namespace Vistik\Checks\Application;
 
 use Vistik\Checks\HealthCheck;
 use Vistik\Metrics\Metrics;
+use Vistik\Utils\Printer;
 
 class Response500Check extends HealthCheck
 {
@@ -22,7 +23,7 @@ class Response500Check extends HealthCheck
     {
         $ratio = Metrics::getRatio(500);
         $success = $ratio < $this->maxRatio;
-        $this->log("Checking $ratio%(actual) < " . $this->maxRatio . '%(max ratio) = ' . ($success ? 'true' : 'false'));
+        $this->log("Checking $ratio%(actual) < " . $this->maxRatio . '%(max ratio) = ' . Printer::toString($success));
 
         return $success;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vistik;
+namespace Vistik\Middleware;
 
 use Closure;
 use Vistik\Metrics\Metrics;

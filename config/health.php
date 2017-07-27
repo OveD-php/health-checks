@@ -2,6 +2,7 @@
 
 use Vistik\Checks\Application\LogLevel;
 use Vistik\Checks\Application\MaxRatioOf500Responses;
+use Vistik\Checks\Application\MaxResponseTimeAvg;
 use Vistik\Checks\Database\DatabaseOnline;
 use Vistik\Checks\Database\DatabaseUpToDate;
 use Vistik\Checks\Environment\CorrectEnvironment;
@@ -22,6 +23,7 @@ return [
         new PathIsWritable(storage_path('framework/sessions')),
         new PathIsWritable(storage_path('framework/cache')),
         new MaxRatioOf500Responses(1.00),
+        new MaxResponseTimeAvg(300),
     ],
     'route'  => [
         'enabled' => true,

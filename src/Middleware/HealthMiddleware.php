@@ -3,9 +3,9 @@
 namespace Vistik;
 
 use Closure;
-use Vistik\Stats\ResponseCounter;
+use Vistik\Metrics\Metrics;
 
-class RequestMiddleware
+class HealthMiddleware
 {
     public function handle($request, Closure $next)
     {
@@ -14,6 +14,6 @@ class RequestMiddleware
 
     public function terminate($request, $response)
     {
-        ResponseCounter::addResponse($response);
+        Metrics::addData($response);
     }
 }

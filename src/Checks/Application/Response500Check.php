@@ -3,7 +3,7 @@
 namespace Vistik\Checks\Application;
 
 use Vistik\Checks\HealthCheck;
-use Vistik\Stats\ResponseCounter;
+use Vistik\Metrics\Metrics;
 
 class Response500Check extends HealthCheck
 {
@@ -20,6 +20,10 @@ class Response500Check extends HealthCheck
 
     public function run(): bool
     {
-        return ResponseCounter::getRatio(500) < $this->maxRatio;
+        $ratio = Metrics::getRatio(500);
+        $success = $ratio < $this->maxRatio;
+        $this->log("Checking $ratio%(actual) < " . $this->maxRatio . '%(max ratio) = ' . ($success ? 'true' : 'false'));
+
+        return $success;
     }
 }

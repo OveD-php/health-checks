@@ -44,7 +44,10 @@ class HealthCheckRouteTest extends TestCase
         $this->app['config']->set('health.route.enabled', true);
 
         // When
-        $this->get('_health')->assertJson(['health' => 'failed'])->assertStatus(500);
+        $this
+            ->get('_health')
+            ->assertJson(['health' => 'failed'])
+            ->assertStatus(500);
 
         // Then
     }
@@ -65,6 +68,23 @@ class HealthCheckRouteTest extends TestCase
         // Then
         $response->assertSee("Route not found");
         $response->assertStatus(404);
+    }
 
+    /**
+     * @test
+     * @group url
+     *
+     */
+    public function can_hit_health_stats_url()
+    {
+        // Given
+        $this->app['config']->set('health.route.enabled', true);
+
+        // When
+        $response = $this->get('_health/stats');
+
+        // Then
+        $response->assertSee('{"200":{"count":0,"ratio":0},');
+        $response->assertStatus(200);
     }
 }

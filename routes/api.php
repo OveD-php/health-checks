@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Vistik\HealthChecker;
+use Vistik\Metrics\Metrics;
 use Vistik\Utils\CheckList;
 
 Route::get(
@@ -19,5 +20,16 @@ Route::get(
         }
 
         return response()->json(['health' => 'ok'], 200);
+    }
+);
+
+Route::get(
+    '_health/stats',
+    function () {
+        if (!config('health.route.enabled', false)){
+            return response('Route not found', 404);
+        }
+
+        return response()->json(Metrics::getStats(), 200);
     }
 );

@@ -1,30 +1,29 @@
 <?php
 
-namespace Vistik\Stats;
+namespace Vistik\Metrics;
 
-use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Symfony\Component\HttpFoundation\Response;
 
-class ResponseCounter
+class Metrics
 {
 
     private static $statusCodes = [200, 201, 204, 400, 401, 403, 404, 405, 422, 500];
     private static $successCodes = [200, 201, 204];
     private static $rememberInMinutes = 60;
 
-    public static function addResponse(Response $response)
+    public static function addData(Response $response)
     {
-        $key = self::getCacheKey($response->getStatusCode());
+        $key = self::getHttpCodeCacheKey($response->getStatusCode());
         if (Cache::has($key)) {
             Cache::increment($key);
-
-            return;
+        } else{
+            Cache::put($key, 1, self::$rememberInMinutes);
         }
-
-        Cache::put($key, 1, self::$rememberInMinutes);
     }
 
-    public static function getStats()
+    public static function getStats(): array
     {
         $output = [];
         $total = 0;
@@ -42,10 +41,13 @@ class ResponseCounter
             $count = self::getCount($statusCode);
             $successfulCount += $count;
         }
-        $output['success'] = [
-            'count' => $successfulCount,
-            'ratio' => ($successfulCount / $total) * 100,
-        ];
+
+        if ($total > 0){
+            $output['success'] = [
+                'count' => $successfulCount,
+                'ratio' => ($successfulCount / $total) * 100,
+            ];
+        }
 
         $output['total'] = $total;
 
@@ -54,7 +56,7 @@ class ResponseCounter
 
     public static function getCount(int $statusCode): int
     {
-        $key = self::getCacheKey($statusCode);
+        $key = self::getHttpCodeCacheKey($statusCode);
         $count = (int)Cache::get($key, 0);
 
         return $count;
@@ -73,7 +75,7 @@ class ResponseCounter
 
     public static function getRatio(int $statusCode): float
     {
-        $key = self::getCacheKey($statusCode);
+        $key = self::getHttpCodeCacheKey($statusCode);
         $count = (int)Cache::get($key, 0);
         $total = (int)self::getTotalCount();
 
@@ -84,9 +86,9 @@ class ResponseCounter
         return ($count / $total) * 100;
     }
 
-    private static function getCacheKey(int $statusCode): string
+    private static function getHttpCodeCacheKey(int $statusCode): string
     {
-        $key = 'requests.' . $statusCode;
+        $key = 'requests.httpcode.' . $statusCode;
 
         return $key;
     }

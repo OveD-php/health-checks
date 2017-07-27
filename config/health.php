@@ -1,7 +1,7 @@
 <?php
 
 use Vistik\Checks\Database\DatabaseOnline;
-use Vistik\Checks\Database\HasUnrunMigrations;
+use Vistik\Checks\Database\DatabaseUpToDate;
 use Vistik\Checks\Environment\CorrectEnvironment;
 use Vistik\Checks\Environment\DebugModeOff;
 use Vistik\Checks\Filesystem\PathIsWritable;
@@ -17,7 +17,7 @@ return [
         new PathIsWritable(storage_path('logs')),
         new PathIsWritable(storage_path('framework/sessions')),
         new PathIsWritable(storage_path('framework/cache')),
-        new HasUnrunMigrations()
+        new DatabaseUpToDate()
     ],
     'route'  => [
         'enabled' => true,

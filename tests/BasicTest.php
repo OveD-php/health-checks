@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase;
 use Vistik\Checks\Database\DatabaseOnline;
-use Vistik\Checks\Database\HasUnrunMigrations;
+use Vistik\Checks\Database\DatabaseUpToDate;
+use Vistik\Checks\Environment\CheckConfigSetting;
+use Vistik\Checks\Environment\CheckEnvironmentSetting;
 use Vistik\Checks\Environment\CorrectEnvironment;
 use Vistik\Checks\Environment\DebugModeOff;
 use Vistik\Checks\Filesystem\PathIsWritable;
@@ -21,9 +22,9 @@ class BasicTest extends TestCase
         // Given
         $this->app['config']->set('database.default', 'testbench');
         $this->app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => '',
+            'prefix' => '',
         ]);
         $check = new DatabaseOnline();
 
@@ -185,12 +186,12 @@ class BasicTest extends TestCase
         // Given
         $this->app['config']->set('database.default', 'testbench');
         $this->app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => '',
+            'prefix' => '',
         ]);
 
-        $check = new HasUnrunMigrations();
+        $check = new DatabaseUpToDate();
 
         // When
         $outcome = $check->run();
@@ -198,5 +199,84 @@ class BasicTest extends TestCase
         // Then
         $this->assertFalse($outcome);
         $this->assertEquals('No migration was found - failing check', $check->getLog()[0]);
+    }
+
+    /**
+     * @test
+     * @group checks
+     *
+     */
+    public function can_check_if_config_is_correct()
+    {
+        // Given
+        $this->app['config']->set('database.default', 'testbench');
+
+        $check = new CheckConfigSetting('database.default', 'testbench');
+
+        // When
+        $outcome = $check->run();
+
+        // Then
+        $this->assertTrue($outcome);
+    }
+
+    /**
+     * @test
+     * @group checks
+     *
+     */
+    public function will_fail_if_config_setting_does_not_match()
+    {
+        // Given
+        $this->app['config']->set('database.default', 'testbench');
+
+        $check = new CheckConfigSetting('database.default', 'not-correct');
+
+        // When
+        $outcome = $check->run();
+
+        // Then
+        $this->assertFalse($outcome);
+        $this->assertEquals("Expected value <comment>not-correct</comment> does not match actual value: <comment>testbench</comment>", $check->getError());
+    }
+
+    /**
+     * @test
+     * @group checks
+     *
+     */
+    public function will_fail_if_env_setting_does_not_match()
+    {
+        // Given
+        putenv("visti=testbench");
+
+        $check = new CheckEnvironmentSetting('visti', 'not-correct');
+
+        // When
+        $outcome = $check->run();
+
+        // Then
+        $this->assertFalse($outcome);
+        $this->assertEquals("Expected value <comment>not-correct</comment> does not match actual value: <comment>testbench</comment>", $check->getError());
+
+    }
+
+    /**
+     * @test
+     * @group checks
+     *
+     */
+    public function can_check_if_env_setting_does_match()
+    {
+        // Given
+        putenv("visti=hey");
+
+        $check = new CheckEnvironmentSetting('visti', 'hey');
+
+        // When
+        $outcome = $check->run();
+
+        // Then
+        $this->assertTrue($outcome);
     }
 }

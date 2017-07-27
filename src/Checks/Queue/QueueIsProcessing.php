@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Vistik\Checks\HealthCheck;
 use Vistik\Jobs\CheckQueueIsRunning;
+use Vistik\Utils\Printer;
 
 class QueueIsProcessing extends HealthCheck
 {
@@ -30,7 +31,7 @@ class QueueIsProcessing extends HealthCheck
 
         try {
             $cmd = new CheckQueueIsRunning($id, $path, $this->queue);
-            $this->log('Check if queue is getting processed - queue: ' . $cmd->getQueue());
+            $this->log('Check if queue is getting processed - queue: ' . Printer::toString($cmd->getQueue()));
             $this->dispatch($cmd);
         } catch (Exception $e) {
             $this->log($e->getMessage());
@@ -42,12 +43,9 @@ class QueueIsProcessing extends HealthCheck
         $file = $path . $id;
         $max = 10;
         for ($i = 1; $i <= $max; $i++) {
-            $this->log(sprintf('Waiting for message from MQ %s/%s', $i, $max));
             try {
                 File::get($file);
                 File::delete($file);
-
-                $this->log("Got a response");
 
                 return true;
             } catch (Exception $e) {

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use Vistik\Checks\HealthCheck;
 
-class HasUnrunMigrations extends HealthCheck
+class DatabaseUpToDate extends HealthCheck
 {
 
     public function run(): bool
@@ -22,12 +22,23 @@ class HasUnrunMigrations extends HealthCheck
 
         $output = collect(explode("\n", $output));
 
-        $this->log("Not yet migrated:");
-        $output->each(function ($item) {
-            $item = str_replace(['| N    | ', ' |'], '', $item);
-            $this->log($item);
+        $output = $output->reject(function($item){
+            return !Str::contains($item, '| N    | ');
         });
 
-        return $output->count() == 0;
+        $this->log("Checking if any migrations are not yet applied!");
+        $unAppliedMigrations = [];
+        $output->each(function ($item) {
+            $item = str_replace(['| N    | ', ' |'], '', $item);
+            $unAppliedMigrations[] = $item;
+        });
+
+        $check = $output->count() == 0;
+
+        if (!$check){
+            $this->setError(implode("\n", $unAppliedMigrations));
+        }
+
+        return $check;
     }
 }

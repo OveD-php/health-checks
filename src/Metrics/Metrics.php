@@ -32,11 +32,7 @@ class Metrics
 
     public static function trackRequest(Request $request, float $time)
     {
-        if (Cache::has(self::$responseTimeKey)) {
-            Cache::increment(self::$responseTimeKey, $time);
-        } else {
-            Cache::put(self::$responseTimeKey, $time, self::$rememberInMinutes);
-        }
+        Cache::put(self::$responseTimeKey, $time + Cache::get(self::$responseTimeKey), self::$rememberInMinutes);
     }
 
     public static function getStats(): array
@@ -65,9 +61,11 @@ class Metrics
             ];
         }
 
-        if (Cache::has(self::$responseTimeKey)){
+        if (Cache::has(self::$responseTimeKey)) {
             $output['response_time'] = [
-                'avg' => self::getResponseTimeAvg()
+                'total_time'     => Cache::get(self::$responseTimeKey),
+                'total_requests' => $total,
+                'avg'            => self::getResponseTimeAvg(),
             ];
         }
 
@@ -132,7 +130,7 @@ class Metrics
     {
         $total = self::getTotalCount();
 
-        if ($total == 0){
+        if ($total == 0) {
             return 0.00;
         }
 

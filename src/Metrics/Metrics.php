@@ -3,9 +3,9 @@
 namespace Vistik\Metrics;
 
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
+use Vistik\Utils\Printer;
 
 class Metrics
 {
@@ -13,14 +13,18 @@ class Metrics
     private static $statusCodes = [200, 201, 204, 400, 401, 403, 404, 405, 422, 500];
     private static $successCodes = [200, 201, 204];
     private static $rememberInMinutes = 60;
+    private static $timestampKey = 'health.check';
 
     public static function addData(Response $response)
     {
         $key = self::getHttpCodeCacheKey($response->getStatusCode());
         if (Cache::has($key)) {
             Cache::increment($key);
-        } else{
+        } else {
             Cache::put($key, 1, self::$rememberInMinutes);
+        }
+
+        if (!Cache::has(self::$timestampKey)){
             self::setTimestamp();
         }
     }
@@ -44,7 +48,7 @@ class Metrics
             $successfulCount += $count;
         }
 
-        if ($total > 0){
+        if ($total > 0) {
             $output['success'] = [
                 'count' => $successfulCount,
                 'ratio' => ($successfulCount / $total) * 100,
@@ -96,11 +100,14 @@ class Metrics
         return $key;
     }
 
-    private static function setTimestamp(){
-        Cache::put('health.check', Carbon::now()->toDateTimeString());
+    private static function setTimestamp()
+    {
+        $now = Carbon::now()->toDateTimeString();
+        Cache::put(self::$timestampKey, $now, self::$rememberInMinutes);
     }
 
-    private static function getTimestamp(): Carbon{
-        return Carbon::parse(Cache::get('health.check'));
+    private static function getTimestamp(): Carbon
+    {
+        return Carbon::parse(Cache::get(self::$timestampKey));
     }
 }

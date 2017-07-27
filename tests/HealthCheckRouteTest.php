@@ -1,9 +1,11 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Http\Response;
 use Orchestra\Testbench\TestCase;
 use Vistik\Checks\Environment\DebugModeOff;
 use Vistik\Checks\Queue\QueueIsProcessing;
+use Vistik\Metrics\Metrics;
 use Vistik\ServiceProvider\HealthCheckServiceProvider;
 
 class HealthCheckRouteTest extends TestCase
@@ -92,18 +94,30 @@ class HealthCheckRouteTest extends TestCase
     /**
      * @test
      * @group url
-     *
      */
     public function will_return_timestamp_on_stats()
     {
         // Given
         $this->app['config']->set('health.route.enabled', true);
 
+        $mock = Mockery::mock(Response::class);
+        $mock->shouldReceive('getStatusCode')->andReturn(200);
+        Metrics::addData($mock);
+
         // When
         $response = $this->get('_health/stats');
 
         // Then
-        $response->assertSee('"timestamp":"' . Carbon::now()->toDateTimeString());
+        $now = Carbon::now()->toDateTimeString();
+        $response->assertSee('"timestamp":"' . $now);
+        $response->assertStatus(200);
+
+        sleep(1);
+
+        $response = $this->get('_health/stats');
+
+        // Then
+        $response->assertSee('"timestamp":"' . $now);
         $response->assertStatus(200);
     }
 }

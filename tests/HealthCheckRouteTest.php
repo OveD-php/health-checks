@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Orchestra\Testbench\TestCase;
 use Vistik\Checks\Environment\DebugModeOff;
 use Vistik\Checks\Queue\QueueIsProcessing;
@@ -85,6 +86,24 @@ class HealthCheckRouteTest extends TestCase
 
         // Then
         $response->assertSee('{"200":{"count":0,"ratio":0},');
+        $response->assertStatus(200);
+    }
+
+    /**
+     * @test
+     * @group url
+     *
+     */
+    public function will_return_timestamp_on_stats()
+    {
+        // Given
+        $this->app['config']->set('health.route.enabled', true);
+
+        // When
+        $response = $this->get('_health/stats');
+
+        // Then
+        $response->assertSee('"timestamp":"' . Carbon::now()->toDateTimeString());
         $response->assertStatus(200);
     }
 }

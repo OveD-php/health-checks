@@ -2,6 +2,7 @@
 
 namespace Vistik\Metrics;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +21,7 @@ class Metrics
             Cache::increment($key);
         } else{
             Cache::put($key, 1, self::$rememberInMinutes);
+            self::setTimestamp();
         }
     }
 
@@ -50,6 +52,7 @@ class Metrics
         }
 
         $output['total'] = $total;
+        $output['timestamp'] = self::getTimestamp()->toDateTimeString();
 
         return $output;
     }
@@ -91,5 +94,13 @@ class Metrics
         $key = 'requests.httpcode.' . $statusCode;
 
         return $key;
+    }
+
+    private static function setTimestamp(){
+        Cache::put('health.check', Carbon::now()->toDateTimeString());
+    }
+
+    private static function getTimestamp(): Carbon{
+        return Carbon::parse(Cache::get('health.check'));
     }
 }

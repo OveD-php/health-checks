@@ -17,7 +17,6 @@ class MetricsTest extends TestCase
     public function can_get_ratio()
     {
         // Given
-        $request = Mockery::mock(Request::class);
         $mock200 = Mockery::mock(Response::class);
         $mock200->shouldReceive('getStatusCode')->andReturn(200);
 
@@ -33,7 +32,7 @@ class MetricsTest extends TestCase
         }
 
         // Then
-        $this->assertEquals(91.66666666666666, Metrics::getRatio(200));
+        $this->assertEquals(91.67, Metrics::getRatio(200));
     }
 
     /**

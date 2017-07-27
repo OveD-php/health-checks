@@ -198,7 +198,6 @@ class BasicTest extends TestCase
 
         // Then
         $this->assertFalse($outcome);
-//        $this->assertEquals('No migration was found - failing check', $check->getLog()[0]);
     }
 
     /**

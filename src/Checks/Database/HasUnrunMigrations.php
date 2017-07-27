@@ -15,19 +15,32 @@ class HasUnrunMigrations extends HealthCheck
         $output = Artisan::output();
 
         if (Str::contains(trim($output), 'No migrations found')) {
-            $this->log('No migration was found - failing check');
+            $this->setError('No migration was found - failing check');
 
             return false;
         }
 
         $output = collect(explode("\n", $output));
 
-        $this->log("Not yet migrated:");
-        $output->each(function ($item) {
-            $item = str_replace(['| N    | ', ' |'], '', $item);
-            $this->log($item);
+        $output = $output->filter(function ($item) {
+            return Str::contains($item, '| N    | ');
         });
 
-        return $output->count() == 0;
+        $output->each(function ($item) {
+            $this->setError($item);
+        });
+
+        $success = $output->count() == 0;
+
+        if (!$success) {
+            $output->each(function ($item) {
+                $this->log('Unrun: ' . $item);
+            });
+            $this->setError('App has unrun migrations');
+        } else {
+            $this->log('Migrations are up-to-date');
+        }
+
+        return $success;
     }
 }

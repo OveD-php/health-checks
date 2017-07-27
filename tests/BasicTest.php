@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase;
 use Vistik\Checks\Database\DatabaseOnline;
 use Vistik\Checks\Database\HasUnrunMigrations;

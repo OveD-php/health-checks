@@ -30,7 +30,7 @@ class HealthChecker
         /** @var HealthCheck $check */
         foreach ($this->list as $check) {
             if (!$check->run()) {
-                throw new FailedHealthCheckException("Failed health check: " . get_class($check));
+                throw new FailedHealthCheckException("Failed health check: " . get_class($check) . print_r($check->getLog(), true));
             }
         }
     }

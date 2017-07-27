@@ -1,5 +1,6 @@
 <?php
 
+use Vistik\Checks\Application\Response500Check;
 use Vistik\Checks\Database\DatabaseOnline;
 use Vistik\Checks\Database\HasUnrunMigrations;
 use Vistik\Checks\Environment\CorrectEnvironment;
@@ -17,7 +18,8 @@ return [
         new PathIsWritable(storage_path('logs')),
         new PathIsWritable(storage_path('framework/sessions')),
         new PathIsWritable(storage_path('framework/cache')),
-        new HasUnrunMigrations()
+        new HasUnrunMigrations(),
+        new Response500Check(1.00),
     ],
     'route'  => [
         'enabled' => true,

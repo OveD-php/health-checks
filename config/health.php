@@ -11,6 +11,7 @@ use Vistik\Checks\Queue\QueueIsProcessing;
 return [
     'checks' => [
         new DatabaseOnline(),
+        new DatabaseUpToDate(),
         new DebugModeOff(),
         new CorrectEnvironment('production'),
         new QueueIsProcessing(),

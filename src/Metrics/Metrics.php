@@ -5,7 +5,6 @@ namespace Vistik\Metrics;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
-use Vistik\Utils\Printer;
 
 class Metrics
 {
@@ -24,7 +23,7 @@ class Metrics
             Cache::put($key, 1, self::$rememberInMinutes);
         }
 
-        if (!Cache::has(self::$timestampKey)){
+        if (!Cache::has(self::$timestampKey)) {
             self::setTimestamp();
         }
     }
@@ -51,7 +50,7 @@ class Metrics
         if ($total > 0) {
             $output['success'] = [
                 'count' => $successfulCount,
-                'ratio' => ($successfulCount / $total) * 100,
+                'ratio' => round(($successfulCount / $total) * 100, 2),
             ];
         }
 
@@ -90,7 +89,7 @@ class Metrics
             return 0;
         }
 
-        return ($count / $total) * 100;
+        return round(($count / $total) * 100, 2);
     }
 
     private static function getHttpCodeCacheKey(int $statusCode): string

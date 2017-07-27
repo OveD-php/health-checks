@@ -2,13 +2,13 @@
 
 namespace Vistik\Checks\Application;
 
-use Vistik\Checks\Environment\CheckEnvironmentSetting;
+use Vistik\Checks\Environment\CheckConfigSetting;
 
-class LogLevel extends CheckEnvironmentSetting
+class LogLevel extends CheckConfigSetting
 {
 
     public function __construct($logLevel = 'debug')
     {
-        parent::__construct('APP_LOG_LEVEL', $logLevel);
+        parent::__construct('app.log_level', $logLevel);
     }
 }

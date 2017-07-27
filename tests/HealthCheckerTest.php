@@ -15,7 +15,7 @@ class HealthCheckerTest extends TestCase
      * @group checks
      *
      */
-    public function run_multiple_checks()
+    public function can_run_multiple_checks()
     {
         // Given
         $this->app['config']->set('database.default', 'testbench');

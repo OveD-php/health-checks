@@ -4,6 +4,7 @@ namespace Vistik\Metrics;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class Metrics
@@ -13,8 +14,9 @@ class Metrics
     private static $successCodes = [200, 201, 204];
     private static $rememberInMinutes = 60;
     private static $timestampKey = 'health.check';
+    private static $responseTimeKey = 'health.response_time_total';
 
-    public static function addData(Response $response)
+    public static function trackResponse(Response $response)
     {
         $key = self::getHttpCodeCacheKey($response->getStatusCode());
         if (Cache::has($key)) {
@@ -25,6 +27,15 @@ class Metrics
 
         if (!Cache::has(self::$timestampKey)) {
             self::setTimestamp();
+        }
+    }
+
+    public static function trackRequest(Request $request, float $time)
+    {
+        if (Cache::has(self::$responseTimeKey)) {
+            Cache::increment(self::$responseTimeKey, $time);
+        } else {
+            Cache::put(self::$responseTimeKey, $time, self::$rememberInMinutes);
         }
     }
 
@@ -54,8 +65,15 @@ class Metrics
             ];
         }
 
-        $output['total'] = $total;
-        $output['timestamp'] = self::getTimestamp()->toDateTimeString();
+        if (Cache::has(self::$responseTimeKey)){
+            $output['response_time'] = [
+                'avg' => self::getResponseTimeAvg()
+            ];
+        }
+
+        $output['total_requests'] = $total;
+        $output['from_timestamp'] = self::getTimestamp()->toDateTimeString();
+        $output['to_timestamp'] = self::getTimestamp()->addMinute(self::$rememberInMinutes)->toDateTimeString();
 
         return $output;
     }
@@ -108,5 +126,16 @@ class Metrics
     private static function getTimestamp(): Carbon
     {
         return Carbon::parse(Cache::get(self::$timestampKey));
+    }
+
+    public static function getResponseTimeAvg(): float
+    {
+        $total = self::getTotalCount();
+
+        if ($total == 0){
+            return 0.00;
+        }
+
+        return Cache::get(self::$responseTimeKey) / $total;
     }
 }

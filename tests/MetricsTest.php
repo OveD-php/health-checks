@@ -24,11 +24,11 @@ class MetricsTest extends TestCase
 
         $mock500 = Mockery::mock(Response::class);
         $mock500->shouldReceive('getStatusCode')->andReturn(500);
-        Metrics::addData($mock500);
+        Metrics::trackResponse($mock500);
 
         // When
         for ($i = 0; $i <= 10; $i++) {
-            Metrics::addData($mock200);
+            Metrics::trackResponse($mock200);
         }
 
         // Then
@@ -51,16 +51,40 @@ class MetricsTest extends TestCase
 
         $mock500 = Mockery::mock(Response::class);
         $mock500->shouldReceive('getStatusCode')->andReturn(500);
-        Metrics::addData($mock500);
+        Metrics::trackResponse($mock500);
 
         // When
         for ($i = 0; $i < 10; $i++) {
-            Metrics::addData($mock200);
+            Metrics::trackResponse($mock200);
         }
 
         // Then
         $this->assertEquals(11, Metrics::getTotalCount());
         $this->assertEquals(10, Metrics::getCount(200));
         $this->assertEquals(1, Metrics::getCount(500));
+    }
+
+    /**
+     * @test
+     * @group metrics
+     *
+     */
+    public function can_track_avg_response_time()
+    {
+        // Given
+        $mock200 = Mockery::mock(Response::class);
+        $mock200->shouldReceive('getStatusCode')->andReturn(200);
+        $mock = Mockery::mock(Request::class);
+
+        // When
+        Metrics::trackResponse($mock200);
+        Metrics::trackRequest($mock, 100);
+        Metrics::trackResponse($mock200);
+        Metrics::trackRequest($mock, 50);
+        Metrics::trackResponse($mock200);
+        Metrics::trackRequest($mock, 750);
+
+        // Then
+        $this->assertEquals(300, Metrics::getResponseTimeAvg());
     }
 }

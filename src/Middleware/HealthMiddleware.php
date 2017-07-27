@@ -14,6 +14,8 @@ class HealthMiddleware
 
     public function terminate($request, $response)
     {
-        Metrics::addData($response);
+        $time = round((microtime(true) - LARAVEL_START) * 1000, 2);
+        Metrics::trackResponse($response);
+        Metrics::trackRequest($request, $time);
     }
 }

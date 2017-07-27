@@ -102,14 +102,16 @@ class HealthCheckRouteTest extends TestCase
 
         $mock = Mockery::mock(Response::class);
         $mock->shouldReceive('getStatusCode')->andReturn(200);
-        Metrics::addData($mock);
+        Metrics::trackResponse($mock);
 
         // When
         $response = $this->get('_health/stats');
 
         // Then
         $now = Carbon::now()->toDateTimeString();
-        $response->assertSee('"timestamp":"' . $now);
+        $nowPlus60Min = Carbon::now()->addMinute(60)->toDateTimeString();
+        $response->assertSee('"from_timestamp":"' . $now);
+        $response->assertSee('"to_timestamp":"' . $nowPlus60Min);
         $response->assertStatus(200);
 
         sleep(1);
@@ -117,7 +119,43 @@ class HealthCheckRouteTest extends TestCase
         $response = $this->get('_health/stats');
 
         // Then
-        $response->assertSee('"timestamp":"' . $now);
+        $response->assertSee('"from_timestamp":"' . $now);
+        $response->assertSee('"to_timestamp":"' . $nowPlus60Min);
+
+        $response->assertStatus(200);
+    }
+
+    /**
+     * @test
+     * @group url
+     */
+    public function will_return_avg_response_time()
+    {
+        // Given
+        $this->app['config']->set('health.route.enabled', true);
+
+        $mock = Mockery::mock(Response::class);
+        $mock->shouldReceive('getStatusCode')->andReturn(200);
+        Metrics::trackResponse($mock);
+
+        // When
+        $response = $this->get('_health/stats');
+
+        // Then
+        $now = Carbon::now()->toDateTimeString();
+        $nowPlus60Min = Carbon::now()->addMinute(60)->toDateTimeString();
+        $response->assertSee('"from_timestamp":"' . $now);
+        $response->assertSee('"to_timestamp":"' . $nowPlus60Min);
+        $response->assertStatus(200);
+
+        sleep(1);
+
+        $response = $this->get('_health/stats');
+
+        // Then
+        $response->assertSee('"from_timestamp":"' . $now);
+        $response->assertSee('"to_timestamp":"' . $nowPlus60Min);
+
         $response->assertStatus(200);
     }
 }

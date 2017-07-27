@@ -22,11 +22,11 @@ class Response500CheckTest extends TestCase
         // When
         $mock = Mockery::mock(Response::class);
         $mock->shouldReceive('getStatusCode')->andReturn(500);
-        Metrics::addData($mock);
+        Metrics::trackResponse($mock);
 
         $mock = Mockery::mock(Response::class);
         $mock->shouldReceive('getStatusCode')->andReturn(200);
-        Metrics::addData($mock);
+        Metrics::trackResponse($mock);
 
         // Then
         $this->assertFalse($check->run());

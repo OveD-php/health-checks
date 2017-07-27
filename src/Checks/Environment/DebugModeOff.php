@@ -2,21 +2,11 @@
 
 namespace Vistik\Checks\Environment;
 
-use Vistik\Checks\HealthCheck;
-
-class DebugModeOff extends HealthCheck
+class DebugModeOff extends CheckConfigSetting
 {
 
-    public function run(): bool
+    public function __construct()
     {
-        $debugMode = config('app.debug');
-        $this->log("Debug should be turned off");
-        if ($debugMode === true) {
-            $this->setError(sprintf('Debug mode was %s should have been false', $debugMode));
-
-            return false;
-        }
-
-        return true;
+        parent::__construct('app.debug', false);
     }
 }

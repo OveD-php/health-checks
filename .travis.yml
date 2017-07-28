@@ -13,4 +13,4 @@ install:
 script:
   - ./vendor/bin/phpmd src text codesize, controversial, design, naming, unusedcode
   - ./vendor/bin/phpcs -n --colors --standard=PSR2 src
-  - phpunit
+  - ./vendor/bin/phpunit

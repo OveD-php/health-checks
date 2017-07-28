@@ -15,14 +15,14 @@ class DatabaseUpToDate extends HealthCheck
         $output = Artisan::output();
 
         if (Str::contains(trim($output), 'No migrations found')) {
-            $this->log('No migration was found - failing check');
+            $this->setError('No migration was found - failing check');
 
             return false;
         }
 
         $output = collect(explode("\n", $output));
 
-        $output = $output->reject(function($item){
+        $output = $output->reject(function ($item) {
             return !Str::contains($item, '| N    | ');
         });
 
@@ -35,7 +35,7 @@ class DatabaseUpToDate extends HealthCheck
 
         $check = $output->count() == 0;
 
-        if (!$check){
+        if (!$check) {
             $this->setError(implode("\n", $unAppliedMigrations));
         }
 

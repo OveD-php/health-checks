@@ -47,6 +47,5 @@ class CheckQueueIsRunning extends Job implements ShouldQueue
 
     public function getRawBody()
     {
-        
     }
 }

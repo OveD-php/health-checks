@@ -6,11 +6,16 @@ php:
 
 sudo: required
 
+cache:
+  directories:
+  - ./vendor
+
 install:
   - phpenv config-rm xdebug.ini
   - composer update --prefer-source --no-interaction --no-progress
+  - php --version
 
 script:
   - ./vendor/bin/phpmd src text codesize, controversial, design, naming, unusedcode
   - ./vendor/bin/phpcs -n --colors --standard=PSR2 src
-  - phpunit
+  - composer test

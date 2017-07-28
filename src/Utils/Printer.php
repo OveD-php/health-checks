@@ -2,6 +2,7 @@
 
 namespace Vistik\Utils;
 
+use Exception;
 use Illuminate\Support\Arr;
 
 class Printer
@@ -22,21 +23,30 @@ class Printer
         }
 
         if (is_array($var)) {
-            //$var = implode(',', $var);
-
-            $var = Arr::dot($var);
-            $output = '[';
-            foreach ($var as $key => $value) {
-                $output .= sprintf('%s=%s, ', $key, $value);
-            }
-            $output = str_replace_last(', ', '', $output);
-            $output .= ']';
-
-            return $output;
+            return self::arrayToString($var);
         }
 
         if (is_object($var) && method_exists($var, '__toString')) {
             return $var->__toString();
         }
+
+        throw new Exception('Cannot convert input to string');
+    }
+
+    /**
+     * @param $var
+     * @return string
+     */
+    private static function arrayToString($var): string
+    {
+        $var = Arr::dot($var);
+        $output = '[';
+        foreach ($var as $key => $value) {
+            $output .= sprintf('%s=%s, ', $key, $value);
+        }
+        $output = str_replace_last(', ', '', $output);
+        $output .= ']';
+
+        return $output;
     }
 }

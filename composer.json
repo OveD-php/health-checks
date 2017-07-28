@@ -31,6 +31,10 @@
     }
   },
   "scripts": {
-    "test": "phpunit"
+    "test": "phpunit",
+    "check": [
+      "./vendor/bin/phpmd src text codesize, controversial, design, naming, unusedcode",
+      "./vendor/bin/phpcbf --standard=PSR2 src/"
+    ]
   }
 }

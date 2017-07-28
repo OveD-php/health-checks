@@ -29,5 +29,8 @@
     "psr-4": {
       "Vistik\\": "src/"
     }
+  },
+  "scripts": {
+    "test": "phpunit"
   }
 }

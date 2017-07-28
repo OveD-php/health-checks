@@ -6,12 +6,14 @@ php:
 
 sudo: required
 
+cache:
+  directories:
+  - ./vendor
+
 install:
   - phpenv config-rm xdebug.ini
   - composer update --prefer-source --no-interaction --no-progress
-
-before_script:
-  - phpenv config-rm xdebug.ini
+  - php --version
 
 script:
   - ./vendor/bin/phpmd src text codesize, controversial, design, naming, unusedcode

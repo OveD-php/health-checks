@@ -26,19 +26,17 @@ class Printer
 
             $var = Arr::dot($var);
             $output = '[';
-            foreach ($var as $key=>$value){
+            foreach ($var as $key => $value) {
                 $output .= sprintf('%s=%s, ', $key, $value);
             }
             $output = str_replace_last(', ', '', $output);
             $output .= ']';
 
             return $output;
-
         }
 
         if (is_object($var) && method_exists($var, '__toString')) {
             return $var->__toString();
         }
-
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Vistik\Checks\Environment;
 
-
 use Vistik\Checks\HealthCheck;
 use Vistik\Utils\Printer;
 

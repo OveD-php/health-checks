@@ -22,7 +22,7 @@ class DatabaseUpToDate extends HealthCheck
 
         $output = collect(explode("\n", $output));
 
-        $output = $output->reject(function($item){
+        $output = $output->reject(function ($item) {
             return !Str::contains($item, '| N    | ');
         });
 
@@ -35,7 +35,7 @@ class DatabaseUpToDate extends HealthCheck
 
         $check = $output->count() == 0;
 
-        if (!$check){
+        if (!$check) {
             $this->setError(implode("\n", $unAppliedMigrations));
         }
 

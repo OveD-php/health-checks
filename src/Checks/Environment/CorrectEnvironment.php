@@ -2,7 +2,6 @@
 
 namespace Vistik\Checks\Environment;
 
-
 class CorrectEnvironment extends CheckConfigSetting
 {
 

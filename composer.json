@@ -7,22 +7,30 @@
     {
       "name": "Visti Kløft",
       "email": "hr.kloft@gmail.com"
+    },
+    {
+      "name": "Peter Suhm",
+      "email": "peter@suhm.dk"
     }
   ],
   "require": {
     "php": ">=7.0.0",
     "illuminate/support": "~5.4|~5.3",
-    "phpmd/phpmd": "^2.6",
     "vistik/typed-collections": "^2.0",
     "squizlabs/php_codesniffer": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "~6.0",
-    "orchestra/testbench": "~3.0"
+    "orchestra/testbench": "~3.0",
+    "mockery/mockery": "^0.9.9",
+    "phpmd/phpmd": "^2.6"
   },
   "autoload": {
     "psr-4": {
       "Vistik\\": "src/"
     }
+  },
+  "scripts": {
+    "test": "phpunit"
   }
 }

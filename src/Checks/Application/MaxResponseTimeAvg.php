@@ -23,7 +23,7 @@ class MaxResponseTimeAvg extends HealthCheck
     {
         $ratio = Metrics::getResponseTimeAvg();
         $success = $ratio < $this->max;
-        $this->log("Checking $ratio%(actual) < " . $this->max . '%(max ratio) = ' . Printer::toString($success));
+        $this->log("Checking " . $ratio. "ms(actual) < " . $this->max . 'ms(max ratio) = ' . Printer::toString($success));
 
         return $success;
     }

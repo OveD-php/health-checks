@@ -1,6 +1,6 @@
 <?php
 
-namespace Vistik\Jobs;
+namespace Phpsafari\Jobs;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;

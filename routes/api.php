@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Vistik\HealthChecker;
-use Vistik\Metrics\Metrics;
-use Vistik\Utils\CheckList;
+use Phpsafari\HealthChecker;
+use Phpsafari\Metrics\Metrics;
+use Phpsafari\Utils\CheckList;
 
 Route::get(
     '_health',

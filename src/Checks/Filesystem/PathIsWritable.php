@@ -1,8 +1,8 @@
 <?php
 
-namespace Vistik\Checks\Filesystem;
+namespace Phpsafari\Checks\Filesystem;
 
-use Vistik\Checks\HealthCheck;
+use Phpsafari\Checks\HealthCheck;
 
 class PathIsWritable extends HealthCheck
 {

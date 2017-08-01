@@ -1,6 +1,6 @@
 <?php
 
-namespace Vistik\Checks;
+namespace Phpsafari\Checks;
 
 abstract class HealthCheck
 {

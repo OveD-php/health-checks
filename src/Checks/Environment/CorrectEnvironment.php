@@ -1,6 +1,6 @@
 <?php
 
-namespace Vistik\Checks\Environment;
+namespace Phpsafari\Checks\Environment;
 
 class CorrectEnvironment extends CheckConfigSetting
 {

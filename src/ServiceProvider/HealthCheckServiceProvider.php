@@ -1,9 +1,9 @@
 <?php
 
-namespace Vistik\ServiceProvider;
+namespace Phpsafari\ServiceProvider;
 
 use Illuminate\Support\ServiceProvider;
-use Vistik\Commands\HealthCommand;
+use Phpsafari\Commands\HealthCommand;
 
 class HealthCheckServiceProvider extends ServiceProvider
 {

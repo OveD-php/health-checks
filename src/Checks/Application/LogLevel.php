@@ -1,8 +1,8 @@
 <?php
 
-namespace Vistik\Checks\Application;
+namespace Phpsafari\Checks\Application;
 
-use Vistik\Checks\Environment\CheckConfigSetting;
+use Phpsafari\Checks\Environment\CheckConfigSetting;
 
 class LogLevel extends CheckConfigSetting
 {

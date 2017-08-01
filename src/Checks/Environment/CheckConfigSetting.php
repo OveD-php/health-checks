@@ -1,9 +1,9 @@
 <?php
 
-namespace Vistik\Checks\Environment;
+namespace Phpsafari\Checks\Environment;
 
-use Vistik\Checks\HealthCheck;
-use Vistik\Utils\Printer;
+use Phpsafari\Checks\HealthCheck;
+use Phpsafari\Utils\Printer;
 
 class CheckConfigSetting extends HealthCheck
 {

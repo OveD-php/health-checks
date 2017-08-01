@@ -1,14 +1,14 @@
 <?php
 
-use Vistik\Checks\Application\LogLevel;
-use Vistik\Checks\Application\MaxRatioOf500Responses;
-use Vistik\Checks\Application\MaxResponseTimeAvg;
-use Vistik\Checks\Database\DatabaseOnline;
-use Vistik\Checks\Database\DatabaseUpToDate;
-use Vistik\Checks\Environment\CorrectEnvironment;
-use Vistik\Checks\Environment\DebugModeOff;
-use Vistik\Checks\Filesystem\PathIsWritable;
-use Vistik\Checks\Queue\QueueIsProcessing;
+use Phpsafari\Checks\Application\LogLevel;
+use Phpsafari\Checks\Application\MaxRatioOf500Responses;
+use Phpsafari\Checks\Application\MaxResponseTimeAvg;
+use Phpsafari\Checks\Database\DatabaseOnline;
+use Phpsafari\Checks\Database\DatabaseUpToDate;
+use Phpsafari\Checks\Environment\CorrectEnvironment;
+use Phpsafari\Checks\Environment\DebugModeOff;
+use Phpsafari\Checks\Filesystem\PathIsWritable;
+use Phpsafari\Checks\Queue\QueueIsProcessing;
 
 return [
     'checks' => [

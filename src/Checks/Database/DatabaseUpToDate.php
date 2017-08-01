@@ -1,10 +1,10 @@
 <?php
 
-namespace Vistik\Checks\Database;
+namespace Phpsafari\Checks\Database;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
-use Vistik\Checks\HealthCheck;
+use Phpsafari\Checks\HealthCheck;
 
 class DatabaseUpToDate extends HealthCheck
 {

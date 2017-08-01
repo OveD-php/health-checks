@@ -1,10 +1,10 @@
 <?php
 
-namespace Vistik\Checks\Application;
+namespace Phpsafari\Checks\Application;
 
-use Vistik\Checks\HealthCheck;
-use Vistik\Metrics\Metrics;
-use Vistik\Utils\Printer;
+use Phpsafari\Checks\HealthCheck;
+use Phpsafari\Metrics\Metrics;
+use Phpsafari\Utils\Printer;
 
 class MaxRatioOf500Responses extends HealthCheck
 {

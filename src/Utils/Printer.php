@@ -1,6 +1,6 @@
 <?php
 
-namespace Vistik\Utils;
+namespace Phpsafari\Utils;
 
 use Exception;
 use Illuminate\Support\Arr;

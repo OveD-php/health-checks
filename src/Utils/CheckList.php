@@ -1,8 +1,8 @@
 <?php
 
-namespace Vistik\Utils;
+namespace Phpsafari\Utils;
 
-use Vistik\Checks\HealthCheck;
+use Phpsafari\Checks\HealthCheck;
 use Vistik\Collections\TypedCollection;
 
 class CheckList extends TypedCollection

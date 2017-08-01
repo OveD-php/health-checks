@@ -1,10 +1,10 @@
 <?php
 
-namespace Vistik\Checks\Database;
+namespace Phpsafari\Checks\Database;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Vistik\Checks\HealthCheck;
+use Phpsafari\Checks\HealthCheck;
 
 class DatabaseOnline extends HealthCheck
 {

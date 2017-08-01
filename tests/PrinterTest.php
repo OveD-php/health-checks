@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Vistik\Utils\Printer;
+use Phpsafari\Utils\Printer;
 
 class PrinterTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Phpsafari\Checks;
+namespace PhpSafari\Checks;
 
 abstract class HealthCheck
 {

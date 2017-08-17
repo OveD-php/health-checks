@@ -1,10 +1,10 @@
 <?php
 
-namespace Phpsafari\Checks\Database;
+namespace PhpSafari\Checks\Database;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Phpsafari\Checks\HealthCheck;
+use PhpSafari\Checks\HealthCheck;
 
 class DatabaseOnline extends HealthCheck
 {

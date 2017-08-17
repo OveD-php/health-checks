@@ -1,9 +1,9 @@
 <?php
 
-namespace Phpsafari\Checks\Environment;
+namespace PhpSafari\Checks\Environment;
 
-use Phpsafari\Checks\HealthCheck;
-use Phpsafari\Utils\Printer;
+use PhpSafari\Checks\HealthCheck;
+use PhpSafari\Utils\Printer;
 
 class CheckEnvironmentSetting extends HealthCheck
 {

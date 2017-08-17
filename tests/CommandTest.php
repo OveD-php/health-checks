@@ -1,8 +1,8 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Phpsafari\Checks\Environment\DebugModeOff;
-use Phpsafari\ServiceProvider\HealthCheckServiceProvider;
+use PhpSafari\Checks\Environment\DebugModeOff;
+use PhpSafari\ServiceProvider\HealthCheckServiceProvider;
 
 class CommandTest extends TestCase
 {
@@ -14,7 +14,7 @@ class CommandTest extends TestCase
     /**
      * @test
      * @group cli
-     * @expectedException Phpsafari\Exceptions\FailedHealthCheckException
+     * @expectedException PhpSafari\Exceptions\FailedHealthCheckException
      * @expectedExceptionMessage Failed health checks: DebugModeOff
      */
     public function running_health_check_from_command_line_will_throw_exception()

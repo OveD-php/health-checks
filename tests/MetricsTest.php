@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Mockery\Mock;
 use Orchestra\Testbench\TestCase;
-use Phpsafari\Metrics\Metrics;
+use PhpSafari\Metrics\Metrics;
 
 class MetricsTest extends TestCase
 {

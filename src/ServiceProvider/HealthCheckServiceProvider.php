@@ -1,9 +1,9 @@
 <?php
 
-namespace Phpsafari\ServiceProvider;
+namespace PhpSafari\ServiceProvider;
 
 use Illuminate\Support\ServiceProvider;
-use Phpsafari\Commands\HealthCommand;
+use PhpSafari\Commands\HealthCommand;
 
 class HealthCheckServiceProvider extends ServiceProvider
 {

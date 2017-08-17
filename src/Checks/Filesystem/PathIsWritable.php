@@ -1,8 +1,8 @@
 <?php
 
-namespace Phpsafari\Checks\Filesystem;
+namespace PhpSafari\Checks\Filesystem;
 
-use Phpsafari\Checks\HealthCheck;
+use PhpSafari\Checks\HealthCheck;
 
 class PathIsWritable extends HealthCheck
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Phpsafari\Checks\Application;
+namespace PhpSafari\Checks\Application;
 
-use Phpsafari\Checks\Environment\CheckConfigSetting;
+use PhpSafari\Checks\Environment\CheckConfigSetting;
 
 class LogLevel extends CheckConfigSetting
 {

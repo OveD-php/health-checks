@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Phpsafari\HealthChecker;
-use Phpsafari\Metrics\Metrics;
-use Phpsafari\Utils\CheckList;
+use PhpSafari\HealthChecker;
+use PhpSafari\Metrics\Metrics;
+use PhpSafari\Utils\CheckList;
 
 Route::get(
     '_health',

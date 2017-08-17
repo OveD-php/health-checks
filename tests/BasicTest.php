@@ -1,14 +1,14 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Phpsafari\Checks\Database\DatabaseOnline;
-use Phpsafari\Checks\Database\DatabaseUpToDate;
-use Phpsafari\Checks\Environment\CheckConfigSetting;
-use Phpsafari\Checks\Environment\CheckEnvironmentSetting;
-use Phpsafari\Checks\Environment\CorrectEnvironment;
-use Phpsafari\Checks\Environment\DebugModeOff;
-use Phpsafari\Checks\Filesystem\PathIsWritable;
-use Phpsafari\Checks\Queue\QueueIsProcessing;
+use PhpSafari\Checks\Database\DatabaseOnline;
+use PhpSafari\Checks\Database\DatabaseUpToDate;
+use PhpSafari\Checks\Environment\CheckConfigSetting;
+use PhpSafari\Checks\Environment\CheckEnvironmentSetting;
+use PhpSafari\Checks\Environment\CorrectEnvironment;
+use PhpSafari\Checks\Environment\DebugModeOff;
+use PhpSafari\Checks\Filesystem\PathIsWritable;
+use PhpSafari\Checks\Queue\QueueIsProcessing;
 
 class BasicTest extends TestCase
 {

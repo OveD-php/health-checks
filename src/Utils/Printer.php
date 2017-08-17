@@ -1,6 +1,6 @@
 <?php
 
-namespace Phpsafari\Utils;
+namespace PhpSafari\Utils;
 
 use Exception;
 use Illuminate\Support\Arr;

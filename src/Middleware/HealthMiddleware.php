@@ -1,9 +1,9 @@
 <?php
 
-namespace Phpsafari\Middleware;
+namespace PhpSafari\Middleware;
 
 use Closure;
-use Phpsafari\Metrics\Metrics;
+use PhpSafari\Metrics\Metrics;
 
 class HealthMiddleware
 {

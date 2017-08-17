@@ -1,11 +1,11 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Phpsafari\Checks\Environment\CorrectEnvironment;
-use Phpsafari\Checks\Database\DatabaseOnline;
-use Phpsafari\Checks\Environment\DebugModeOff;
-use Phpsafari\HealthChecker;
-use Phpsafari\Utils\CheckList;
+use PhpSafari\Checks\Environment\CorrectEnvironment;
+use PhpSafari\Checks\Database\DatabaseOnline;
+use PhpSafari\Checks\Environment\DebugModeOff;
+use PhpSafari\HealthChecker;
+use PhpSafari\Utils\CheckList;
 
 class HealthCheckerTest extends TestCase
 {
@@ -39,7 +39,7 @@ class HealthCheckerTest extends TestCase
     /**
      * @test
      * @group checks
-     * @expectedException Phpsafari\Exceptions\NoHealthChecksSetupException
+     * @expectedException PhpSafari\Exceptions\NoHealthChecksSetupException
      * @expectedExceptionMessage No health check is setup!
      */
     public function throws_execption_if_no_health_checks_is_setup()

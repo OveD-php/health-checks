@@ -1,14 +1,14 @@
 <?php
 
-namespace Phpsafari\Checks\Queue;
+namespace PhpSafari\Checks\Queue;
 
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Phpsafari\Checks\HealthCheck;
-use Phpsafari\Jobs\CheckQueueIsRunning;
-use Phpsafari\Utils\Printer;
+use PhpSafari\Checks\HealthCheck;
+use PhpSafari\Jobs\CheckQueueIsRunning;
+use PhpSafari\Utils\Printer;
 
 class QueueIsProcessing extends HealthCheck
 {

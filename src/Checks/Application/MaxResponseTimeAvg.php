@@ -1,10 +1,10 @@
 <?php
 
-namespace Phpsafari\Checks\Application;
+namespace PhpSafari\Checks\Application;
 
-use Phpsafari\Checks\HealthCheck;
-use Phpsafari\Metrics\Metrics;
-use Phpsafari\Utils\Printer;
+use PhpSafari\Checks\HealthCheck;
+use PhpSafari\Metrics\Metrics;
+use PhpSafari\Utils\Printer;
 
 class MaxResponseTimeAvg extends HealthCheck
 {

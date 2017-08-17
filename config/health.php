@@ -1,14 +1,14 @@
 <?php
 
-use Phpsafari\Checks\Application\LogLevel;
-use Phpsafari\Checks\Application\MaxRatioOf500Responses;
-use Phpsafari\Checks\Application\MaxResponseTimeAvg;
-use Phpsafari\Checks\Database\DatabaseOnline;
-use Phpsafari\Checks\Database\DatabaseUpToDate;
-use Phpsafari\Checks\Environment\CorrectEnvironment;
-use Phpsafari\Checks\Environment\DebugModeOff;
-use Phpsafari\Checks\Filesystem\PathIsWritable;
-use Phpsafari\Checks\Queue\QueueIsProcessing;
+use PhpSafari\Checks\Application\LogLevel;
+use PhpSafari\Checks\Application\MaxRatioOf500Responses;
+use PhpSafari\Checks\Application\MaxResponseTimeAvg;
+use PhpSafari\Checks\Database\DatabaseOnline;
+use PhpSafari\Checks\Database\DatabaseUpToDate;
+use PhpSafari\Checks\Environment\CorrectEnvironment;
+use PhpSafari\Checks\Environment\DebugModeOff;
+use PhpSafari\Checks\Filesystem\PathIsWritable;
+use PhpSafari\Checks\Queue\QueueIsProcessing;
 
 return [
     'checks' => [

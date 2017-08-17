@@ -1,13 +1,13 @@
 <?php
 
-namespace Phpsafari;
+namespace PhpSafari;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Phpsafari\Checks\HealthCheck;
-use Phpsafari\Exceptions\FailedHealthCheckException;
-use Phpsafari\Exceptions\NoHealthChecksSetupException;
-use Phpsafari\Utils\CheckList;
+use PhpSafari\Checks\HealthCheck;
+use PhpSafari\Exceptions\FailedHealthCheckException;
+use PhpSafari\Exceptions\NoHealthChecksSetupException;
+use PhpSafari\Utils\CheckList;
 
 class HealthChecker
 {

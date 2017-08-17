@@ -71,10 +71,6 @@ class IsFriday extends PhpSafari\Checks\HealthCheck
 Then add `new IsFriday()` to the list of checks in `config/health.php`.
 
 
-## Change log
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
 ## Testing
 
 ``` bash

@@ -24,10 +24,13 @@ Inside the `config/health.php` file is where you configure all your available he
 
 * `CorrectEnvironment` will check if your application's environment is set to `production`
 * `DatabaseOnline` will check your database connection
+* `DatabaseUpToDate` will check if your application has any migrations that hasn't been migrated yet
 * `DebugModeOff` will check if debug mode is off
 * `QueueProcessing` will check if the queue is running and jobs are getting processed
 * `PathIsWritable` will check if a provided path is writable
-* `HasUnrunMigrations` will check if your application has any migrations that hasn't been migrated yet
+* `LogLevel` will check if log level is set to the given value
+* `MaxRatioOf500Responses` will check if the ratio of 500 response are above a given threshold (The last 60 min)
+* `MaxResponseTimeAvg` will check if average response time for all request are above a given threshold (The last 60 min)
 
 To run a health check of your application, run:
 
@@ -47,6 +50,8 @@ You can also run a health check by hitting the `https://<APP_URL>/_health` url i
 
 **Note:** _This feature can be disabled in the `config/health.php` file, by setting `route.enabled` to `false`.
 
+You can navigate to `https://<APP_URL>/_health/stats` and get all stats, including avg response time,
+
 ### Creating your own health checks
 
 In order to create your own health checks, you just need to extend the `Vistik\Checks\HealthCheck` class and implement the `run()` method.
@@ -54,7 +59,7 @@ In order to create your own health checks, you just need to extend the `Vistik\C
 **Example:**
 
 ```php
-class IsFriday extends Vistik\Checks\HealthCheck
+class IsFriday extends PhpSafari\Checks\HealthCheck
 {
     public function run(): bool
     {

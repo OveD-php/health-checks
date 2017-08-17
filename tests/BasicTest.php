@@ -1,14 +1,14 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\Database\DatabaseOnline;
-use Vistik\Checks\Database\DatabaseUpToDate;
-use Vistik\Checks\Environment\CheckConfigSetting;
-use Vistik\Checks\Environment\CheckEnvironmentSetting;
-use Vistik\Checks\Environment\CorrectEnvironment;
-use Vistik\Checks\Environment\DebugModeOff;
-use Vistik\Checks\Filesystem\PathIsWritable;
-use Vistik\Checks\Queue\QueueIsProcessing;
+use PhpSafari\Checks\Database\DatabaseOnline;
+use PhpSafari\Checks\Database\DatabaseUpToDate;
+use PhpSafari\Checks\Environment\CheckConfigSetting;
+use PhpSafari\Checks\Environment\CheckEnvironmentSetting;
+use PhpSafari\Checks\Environment\CorrectEnvironment;
+use PhpSafari\Checks\Environment\DebugModeOff;
+use PhpSafari\Checks\Filesystem\PathIsWritable;
+use PhpSafari\Checks\Queue\QueueIsProcessing;
 
 class BasicTest extends TestCase
 {

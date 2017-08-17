@@ -1,14 +1,14 @@
 <?php
 
-namespace Vistik\Checks\Queue;
+namespace PhpSafari\Checks\Queue;
 
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Vistik\Checks\HealthCheck;
-use Vistik\Jobs\CheckQueueIsRunning;
-use Vistik\Utils\Printer;
+use PhpSafari\Checks\HealthCheck;
+use PhpSafari\Jobs\CheckQueueIsRunning;
+use PhpSafari\Utils\Printer;
 
 class QueueIsProcessing extends HealthCheck
 {

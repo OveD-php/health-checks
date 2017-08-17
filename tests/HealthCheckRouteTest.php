@@ -3,10 +3,10 @@
 use Carbon\Carbon;
 use Illuminate\Http\Response;
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\Environment\DebugModeOff;
-use Vistik\Checks\Queue\QueueIsProcessing;
-use Vistik\Metrics\Metrics;
-use Vistik\ServiceProvider\HealthCheckServiceProvider;
+use PhpSafari\Checks\Environment\DebugModeOff;
+use PhpSafari\Checks\Queue\QueueIsProcessing;
+use PhpSafari\Metrics\Metrics;
+use PhpSafari\ServiceProvider\HealthCheckServiceProvider;
 
 class HealthCheckRouteTest extends TestCase
 {

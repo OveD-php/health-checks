@@ -1,5 +1,5 @@
 {
-  "name": "vistik/health-checks",
+  "name": "phpsafari/health-checks",
   "description": "Make health checks in your laravel application",
   "type": "library",
   "license": "MIT",
@@ -27,7 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Vistik\\": "src/"
+      "PhpSafari\\": "src/"
     }
   },
   "scripts": {

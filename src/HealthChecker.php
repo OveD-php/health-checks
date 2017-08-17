@@ -1,13 +1,13 @@
 <?php
 
-namespace Vistik;
+namespace PhpSafari;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Vistik\Checks\HealthCheck;
-use Vistik\Exceptions\FailedHealthCheckException;
-use Vistik\Exceptions\NoHealthChecksSetupException;
-use Vistik\Utils\CheckList;
+use PhpSafari\Checks\HealthCheck;
+use PhpSafari\Exceptions\FailedHealthCheckException;
+use PhpSafari\Exceptions\NoHealthChecksSetupException;
+use PhpSafari\Utils\CheckList;
 
 class HealthChecker
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Vistik\Commands;
+namespace PhpSafari\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Vistik\Exceptions\FailedHealthCheckException;
-use Vistik\HealthChecker;
-use Vistik\Utils\CheckList;
+use PhpSafari\Exceptions\FailedHealthCheckException;
+use PhpSafari\HealthChecker;
+use PhpSafari\Utils\CheckList;
 
 class HealthCommand extends Command
 {

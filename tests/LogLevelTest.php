@@ -1,7 +1,7 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\Application\LogLevel;
+use PhpSafari\Checks\Application\LogLevel;
 
 class LogLevelTest extends TestCase
 {

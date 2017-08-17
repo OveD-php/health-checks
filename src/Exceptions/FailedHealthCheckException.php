@@ -1,6 +1,6 @@
 <?php
 
-namespace Vistik\Exceptions;
+namespace PhpSafari\Exceptions;
 
 use Exception;
 

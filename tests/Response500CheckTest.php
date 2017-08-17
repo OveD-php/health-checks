@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Response;
 use Orchestra\Testbench\TestCase;
-use Vistik\Checks\Application\MaxRatioOf500Responses;
-use Vistik\Metrics\Metrics;
+use PhpSafari\Checks\Application\MaxRatioOf500Responses;
+use PhpSafari\Metrics\Metrics;
 
 class Response500CheckTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vistik\Metrics;
+namespace PhpSafari\Metrics;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;

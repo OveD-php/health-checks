@@ -1,10 +1,10 @@
 <?php
 
-namespace Vistik\Checks\Application;
+namespace PhpSafari\Checks\Application;
 
-use Vistik\Checks\HealthCheck;
-use Vistik\Metrics\Metrics;
-use Vistik\Utils\Printer;
+use PhpSafari\Checks\HealthCheck;
+use PhpSafari\Metrics\Metrics;
+use PhpSafari\Utils\Printer;
 
 class MaxResponseTimeAvg extends HealthCheck
 {

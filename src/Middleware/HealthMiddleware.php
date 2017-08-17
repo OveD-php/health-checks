@@ -1,9 +1,9 @@
 <?php
 
-namespace Vistik\Middleware;
+namespace PhpSafari\Middleware;
 
 use Closure;
-use Vistik\Metrics\Metrics;
+use PhpSafari\Metrics\Metrics;
 
 class HealthMiddleware
 {

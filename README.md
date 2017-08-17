@@ -3,6 +3,13 @@
 
 Add health checks to your Laravel applications with this package.
 
+## Examples
+
+![All passed](/img/passed.png "Health checks via commandline")
+![DB failed](/img/db-not-up-to-date.png "Database is not up-to-date")
+![Queue failed](/img/queue-not-processing.png "Queue is not processing")
+![Url stats](/img/health-stats.png "Health checks stats via URL")
+
 ## Install
 
 First, use Composer to install this package.
@@ -42,7 +49,7 @@ You can also use Laravel's scheduler to schedule your health checks:
 
 ```php
 $schedule->command('health:check')->hourly();
-```
+``` 
 
 ### Url based health checks
 

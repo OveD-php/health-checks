@@ -16,10 +16,10 @@
   "require": {
     "php": ">=7.0.0",
     "illuminate/support": "~5.4|~5.3",
-    "vistik/typed-collections": "^2.0",
-    "squizlabs/php_codesniffer": "*"
+    "vistik/typed-collections": "^2.0"
   },
   "require-dev": {
+    "squizlabs/php_codesniffer": "*",
     "phpunit/phpunit": "~6.0",
     "orchestra/testbench": "~3.0",
     "mockery/mockery": "^0.9.9",

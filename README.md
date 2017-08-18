@@ -17,7 +17,7 @@ First, use Composer to install this package.
 $ composer require phpsafari/health-checks
 ```
 
-After the package has been installed, go ahead and add ``PhpSafari\ServiceProvider\HealthCheckServiceProvider::class` to your `config/app.php` file.
+After the package has been installed, go ahead and add `PhpSafari\ServiceProvider\HealthCheckServiceProvider::class` to your `config/app.php` file.
 
 After doing this, you can publish the `health.php` configuration file into your `config` folder by running:
 

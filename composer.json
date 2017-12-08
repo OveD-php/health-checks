@@ -30,6 +30,13 @@
       "PhpSafari\\": "src/"
     }
   },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "PhpSafari\\ServiceProvider\\HealthCheckServiceProvider"
+      ]
+    }
+  },
   "scripts": {
     "test": "phpunit",
     "check": [

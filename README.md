@@ -61,7 +61,7 @@ You can navigate to `https://<APP_URL>/_health/stats` and get all stats, includi
 
 ### Creating your own health checks
 
-In order to create your own health checks, you just need to extend the `Vistik\Checks\HealthCheck` class and implement the `run()` method.
+In order to create your own health checks, you just need to extend the `PhpSafari\Checks\HealthCheck` class and implement the `run()` method.
 
 **Example:**
 

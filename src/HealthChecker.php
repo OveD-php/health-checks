@@ -37,6 +37,10 @@ class HealthChecker
 
     public function prettyPrint()
     {
+        if ($this->list->isEmpty()) {
+            throw new NoHealthChecksSetupException("No health check is setup!");
+        }
+        
         $output = [];
         /** @var HealthCheck $check */
         foreach ($this->list as $check) {

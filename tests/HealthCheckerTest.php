@@ -4,6 +4,7 @@ use Orchestra\Testbench\TestCase;
 use PhpSafari\Checks\Environment\CorrectEnvironment;
 use PhpSafari\Checks\Database\DatabaseOnline;
 use PhpSafari\Checks\Environment\DebugModeOff;
+use PhpSafari\Exceptions\NoHealthChecksSetupException;
 use PhpSafari\HealthChecker;
 use PhpSafari\Utils\CheckList;
 
@@ -39,14 +40,16 @@ class HealthCheckerTest extends TestCase
     /**
      * @test
      * @group checks
-     * @expectedException PhpSafari\Exceptions\NoHealthChecksSetupException
-     * @expectedExceptionMessage No health check is setup!
      */
     public function throws_execption_if_no_health_checks_is_setup()
     {
         // Given
         $checkList = new CheckList();
         $checker = new HealthChecker($checkList);
+
+        // Assert
+        $this->expectException(NoHealthChecksSetupException::class);
+        $this->expectExceptionMessage('No health check is setup!');
 
         // When
         $checker->run();

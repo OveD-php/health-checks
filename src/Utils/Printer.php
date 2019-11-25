@@ -4,6 +4,7 @@ namespace PhpSafari\Utils;
 
 use Exception;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class Printer
 {
@@ -44,7 +45,7 @@ class Printer
         foreach ($var as $key => $value) {
             $output .= sprintf('%s=%s, ', $key, $value);
         }
-        $output = str_replace_last(', ', '', $output);
+        $output = Str::replaceLast(', ', '', $output);
         $output .= ']';
 
         return $output;

@@ -23,6 +23,15 @@
                 "url": "https://github.com/jason-klein/typed-collections",
                 "type": "git",
                 "reference": "dev-laravel6"
+            },
+            "type": "library",
+            "autoload": {
+              "psr-4": {
+                "PhpSafari\\": "src/"
+              },
+              "files": [
+                "src/helpers.php"
+              ]
             }
         }
     }

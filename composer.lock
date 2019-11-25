@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b981283c40c65da4f4f377ec2d4c41e9",
+    "content-hash": "4035c1e73eeef2e869405030d6225ffb",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -2537,13 +2537,21 @@
         },
         {
             "name": "vistik/typed-collections",
-            "version": "2.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jason-klein/typed-collections",
                 "reference": "dev-laravel6"
             },
-            "type": "library"
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpSafari\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            }
         },
         {
             "name": "vlucas/phpdotenv",

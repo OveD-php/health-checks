@@ -3,7 +3,7 @@
 namespace PhpSafari\Utils;
 
 use PhpSafari\Checks\HealthCheck;
-use Vistik\Collections\TypedCollection;
+use PhpSafari\Collections\TypedCollection;
 
 class CheckList extends TypedCollection
 {

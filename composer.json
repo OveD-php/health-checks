@@ -13,16 +13,39 @@
       "email": "peter@suhm.dk"
     }
   ],
+  "repositories": [
+    {
+        "type": "package",
+        "package": {
+            "name": "vistik/typed-collections",
+            "version": "6.0.0",
+            "source": {
+                "url": "https://github.com/jason-klein/typed-collections",
+                "type": "git",
+                "reference": "pr-laravel6x"
+            },
+            "type": "library",
+            "autoload": {
+              "psr-4": {
+                "PhpSafari\\": "src/"
+              },
+              "files": [
+                "src/helpers.php"
+              ]
+            }
+        }
+    }
+  ],
   "require": {
-    "php": ">=7.0.0",
-    "illuminate/support": "~5.4|~5.3",
-    "vistik/typed-collections": "^2.0"
+    "php": "^7.2",
+    "illuminate/support": "^6.0",
+    "vistik/typed-collections": "^6.0"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "*",
-    "phpunit/phpunit": "~6.0",
-    "orchestra/testbench": "~3.0",
-    "mockery/mockery": "^0.9.9",
+    "squizlabs/php_codesniffer": "^3.0",
+    "phpunit/phpunit": "^8.0|^7.0",
+    "orchestra/testbench": "^4.0|^3.0",
+    "mockery/mockery": "^1.2|^0.9.9",
     "phpmd/phpmd": "^2.6"
   },
   "autoload": {

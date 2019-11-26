@@ -92,6 +92,7 @@ If you discover any security related issues, please email :author_email instead 
 
 - [Visti Kløft](https://github.com/vistik)
 - [Peter Suhm](https://github.com/petersuhm)
+- [Jason Klein](https://github.com/jason-klein)
 
 ## License
 

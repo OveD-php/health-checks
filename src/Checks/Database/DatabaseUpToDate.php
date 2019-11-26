@@ -20,6 +20,12 @@ class DatabaseUpToDate extends HealthCheck
             return false;
         }
 
+        if (Str::contains(trim($output), 'Migration table not found.')) {
+            $this->setError('Migration table not found - failing check');
+
+            return false;
+        }
+
         $output = collect(explode("\n", $output));
 
         $output = $output->reject(function ($item) {

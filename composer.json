@@ -18,11 +18,11 @@
         "type": "package",
         "package": {
             "name": "vistik/typed-collections",
-            "version": "2.0.2",
+            "version": "6.0.0",
             "source": {
                 "url": "https://github.com/jason-klein/typed-collections",
                 "type": "git",
-                "reference": "dev-laravel6"
+                "reference": "pr-laravel6x"
             },
             "type": "library",
             "autoload": {
@@ -37,14 +37,14 @@
     }
   ],
   "require": {
-    "php": ">=7.0.0",
-    "illuminate/support": "~6.0|~5.4|~5.3",
-    "vistik/typed-collections": "^2.0"
+    "php": "^7.2",
+    "illuminate/support": "^6.0",
+    "vistik/typed-collections": "^6.0"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "*",
-    "phpunit/phpunit": "~8.0|~7.0|~6.0",
-    "orchestra/testbench": "~4.0|~3.0",
+    "squizlabs/php_codesniffer": "^3.0",
+    "phpunit/phpunit": "^8.0|^7.0",
+    "orchestra/testbench": "^4.0|^3.0",
     "mockery/mockery": "^1.2|^0.9.9",
     "phpmd/phpmd": "^2.6"
   },
